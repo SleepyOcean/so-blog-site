@@ -1,0 +1,257 @@
+// PictureInput样式重构
+.picture-input {
+	background: transparent !important;
+}
+
+// mavon-editor样式重构
+.mavon-style {
+	.v-note-wrapper {
+		z-index: 0;
+		background: transparent;
+		border: unset;
+
+		.v-note-panel {
+			.auto-textarea-wrapper .auto-textarea-input{
+				font-size: 16px !important;
+			}
+
+			.v-note-edit.divarea-wrapper {
+				border-right: 1px solid #ebeef5;
+				&.scroll-style {
+					&::-webkit-scrollbar {
+						width: 4px;
+						height: 4px;
+					}
+					&::-webkit-scrollbar-thumb {
+						background-color: #f1f1f1;
+					}
+					&::-webkit-scrollbar-track {
+						background-color: white;
+					}
+				}
+			}
+
+			.v-note-show .v-show-content,
+			.v-note-show .v-show-content-html {
+				background-color: unset !important;
+				padding: 0 10px;
+
+				&.scroll-style {
+					&::-webkit-scrollbar {
+						width: 4px;
+						height: 4px;
+					}
+					&::-webkit-scrollbar-thumb {
+						background-color: #f1f1f1;
+					}
+					&::-webkit-scrollbar-track {
+						background-color: white;
+					}
+				}
+			}
+
+			.v-note-navigation-wrapper {
+				&.shadow {
+					box-shadow: none;
+					border: 1px solid #ebebeb;
+				}
+
+				.v-note-navigation-title.shadow {
+					box-shadow: none;
+				}
+
+				.v-note-navigation-content {
+					h1 {
+						height: 36px;
+						line-height: 36px;
+					}
+
+					h2,
+					h3 {
+						height: 28px;
+						line-height: 28px;
+					}
+
+					h2 {
+						font-size: 16px;
+					}
+
+					h3 {
+						font-size: 14px;
+					}
+				}
+			}
+		}
+
+		.v-note-op.shadow,
+		.v-note-panel.shadow {
+			box-shadow: unset;
+		}
+
+		.v-note-panel {
+			border: unset;
+		}
+	}
+
+	.markdown-body {
+		more {
+			display: block;
+			padding: 10px;
+			margin-bottom: 40px;
+			font-size: 14px;
+			border-radius: 2px;
+		}
+
+		hr {
+			height: 1px;
+			background-color: #f9efef;
+		}
+
+		h1,
+		h2 {
+			border: unset;
+		}
+
+		h1 {
+			line-height: 40px;
+			padding-left: 10px;
+			text-align: center;
+			font-weight: lighter;
+			&:before {
+				content: '#';
+				margin-right: 10px;
+				text-align: center;
+				color: green;
+				font-weight: bolder;
+			}
+		}
+		h2 {
+			border-left: 10px solid orange;
+			padding: 4px 0 8px 10px;
+			font-size: 24px;
+		}
+
+		h3 {
+			font-size: 18px;
+		}
+		h3:before {
+			border-radius: 50%;
+			background-color: #9ed0ff;
+			content: '';
+			width: 6px;
+			display: inline-block;
+			height: 6px;
+			vertical-align: middle;
+			margin-bottom: .18em;
+			margin-right: 8px
+		}
+
+		p {
+			line-height: 24px;
+			font-size: 16px;
+			margin: 10px 0;
+		}
+
+		table {
+			display: inline-table;
+		}
+		code {
+			padding: 2px 0;
+			font-size: 14px;
+			border-radius: 3px;
+		}
+
+		pre {
+			background: #f8f8f8;
+			padding: 10px 16px;
+			border: 1px solid #f5f5f5;
+			border-radius: 4px;
+			* {
+				line-height: 18px;
+			}
+
+			.hljs {
+				white-space: pre-wrap;
+			}
+		}
+
+		img {
+			display: block;
+			margin: auto;
+		}
+		blockquote {
+			background-color: #f7f7f7;
+			padding: 10px;
+			p {
+				font-size: 14px;
+				color: #7b7b7b;
+			}
+		}
+	}
+}
+
+// quill-editor样式重构
+.ql-toolbar,
+.ql-container {
+	&.ql-snow {
+		border: unset;
+		border-bottom: 1px solid #e6e6e6;
+		text-align: center;
+	}
+
+	.ql-editor {
+		padding-bottom: 160px;
+		overflow-x: hidden;
+
+		* {
+			font-family: cnfont;
+			font-size: 15px;
+			font-weight: 500;
+			line-height: 2;
+			width: 100%;
+		}
+
+		p {
+			text-indent: 32px;
+			line-height: 30px;
+		}
+
+		pre {
+			font-family: codefont;
+			line-height: 22px;
+
+			* {
+				font-family: codefont;
+				line-height: 22px;
+			}
+		}
+
+		pre.ql-syntax {
+			background-color: #f5f5f5;
+			color: black;
+		}
+
+		blockquote {
+			margin: 0;
+		}
+
+		h1,
+		h2 {
+			line-height: 60px;
+			font-weight: 400;
+		}
+
+		li,
+		ul {
+			line-height: 28px;
+		}
+
+		h1 {
+			font-size: 42px;
+		}
+
+		h2 {
+			font-size: 32px;
+		}
+	}
+}

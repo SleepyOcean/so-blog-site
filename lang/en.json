@@ -1,0 +1,13 @@
+{
+	"BLOG_NAME": "SO Blog",
+	"TITLE": {
+		"DASHBOARD": "Dash Board",
+		"POST": "Post",
+		"USER": "User"
+	},
+	"LABEL": {
+		"TODO_LIST": "To-do list",
+		"DEAD_LINE": "Dead line",
+		"POST_LIST": "Post in your life"
+	}
+}

@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "webfont";
+  src: url("//at.alicdn.com/t/webfont_njh3xfyhc7j.eot");
+  /* IE9*/
+  src: url("//at.alicdn.com/t/webfont_njh3xfyhc7j.eot?#iefix") format("embedded-opentype"),
+    /* IE6-IE8 */ url("//at.alicdn.com/t/webfont_njh3xfyhc7j.woff") format("woff"),
+    /* chrome、firefox */ url("//at.alicdn.com/t/webfont_njh3xfyhc7j.ttf") format("truetype"),
+    /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+      url("//at.alicdn.com/t/webfont_njh3xfyhc7j.svg#思源黑体-极细") format("svg");
+  /* iOS 4.1- */
+}
+
+/*@font-face {*/
+/*	font-family: "cnfont";*/
+/*	src: url("http://localhost:9000/resource/file/FZYTK.TTF") format("truetype");*/
+/*}*/
+
+/*@font-face {*/
+/*  font-family: "codefont";*/
+/*  src: url("http://localhost:9000/resource/file/consola.ttf");*/
+/*}*/
+
+@font-face {
+  font-family: "numfont";
+  src: url("Roboto.ttf");
+}
+
+@font-face {
+  font-family: "num-Expansiva";
+  src: url("Expansiva.otf");
+}

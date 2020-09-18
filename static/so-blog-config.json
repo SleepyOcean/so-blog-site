@@ -1,0 +1,11 @@
+{
+    "ServerConfig": {
+		"serviceUrl": "https://service.sleepyocean.cn",
+		"imgServerUrl": "https://gallery.sleepyocean.cn",
+		"imgUrlPrefix": "/resource/img/"
+    },
+    "BaseConfig": {
+        "ajaxTimeout": 60000,
+        "imgUrlPlaceHolder": "PLACEHOLDER=IMG_SERVER_URL"
+    }
+}
