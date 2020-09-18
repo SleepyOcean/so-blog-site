@@ -21,6 +21,8 @@ Vue.config.productionTip = false;
 
 Config.setConfig(configJson);
 
+Vue.prototype.$config = Config;
+
 router.beforeEach((to, from, next) => {
 	console.log('欢迎来到沉睡的海洋');
 	if (to.params.id) {

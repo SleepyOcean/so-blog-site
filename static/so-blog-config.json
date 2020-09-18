@@ -7,5 +7,8 @@
     "BaseConfig": {
         "ajaxTimeout": 60000,
         "imgUrlPlaceHolder": "PLACEHOLDER=IMG_SERVER_URL"
-    }
+    },
+	"ThemeConfig": {
+		"avatarUrl": "https://gallery.sleepyocean.cn/resource/img/8f76719435495bfb06b7ee0e83964a45"
+	}
 }

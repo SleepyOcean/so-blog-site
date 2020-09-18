@@ -148,7 +148,7 @@ export default {
 		}
 		.hp-right-panel, .hp-left-panel {
 			margin: 10px 20px;
-			width: 300px;
+			width: 340px;
 			height: 400px;
 			position: sticky;
 			top: 10px;

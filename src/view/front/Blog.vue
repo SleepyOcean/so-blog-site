@@ -12,7 +12,10 @@
 		</div>
 		<div id="content-box-id" class="b-content-box" :class="{'shrink': showing.menu,'search-status': showing.search}">
 			<div class="content-head-bar" ref="contentHeadRef">
-				<el-avatar class="b-hb-avatar" slot="reference" :size="40" :src="avatarUrl" @click.native.stop="showing.menu = !showing.menu"></el-avatar>
+				<div class="b-hb-band-box">
+					<el-avatar class="b-hb-avatar" slot="reference" :size="44" :src="avatarUrl" @click.native.stop="showing.menu = !showing.menu"></el-avatar>
+					<div class="b-hb-band-title" @click="jumpTo(0)">沉洋官网</div>
+				</div>
 				<div class="b-hb-title text-ellipsis">{{currentTitle}}</div>
 				<i class="chb-icon" :class="showing.search ? 'icon-ios-remove' : 'icon-ios-search'" @click="showing.search = !showing.search"></i>
 			</div>
@@ -56,7 +59,7 @@ export default {
 		}
 	},
 	created () {
-		this.avatarUrl = 'https://gallery.sleepyocean.cn/resource/img/39187b1e2af3f96a4b1f9be0e1c09cfd';
+		this.avatarUrl = this.$config.getAvatarImgUrl();
 	},
 	mounted () {
 		let scrollDiv = this.$refs['contentRef'];
@@ -222,9 +225,26 @@ export default {
 				&.header-hidden {
 					margin-top: -60px;
 				}
-
+				.b-hb-band-box {
+					height: 40px;
+					display: flex;
+					align-items: center;
+				}
 				.b-hb-avatar {
 					cursor: pointer;
+					border: 2px solid gold;
+				}
+				.b-hb-band-title{
+					float: right;
+					color: navajowhite;
+					margin-left: 20px;
+					cursor: pointer;
+					user-select: none;
+				}
+				@media screen and (max-width: 600px) {
+					.b-hb-band-title{
+						display: none;
+					}
 				}
 				.b-hb-title {
 					width: 600px;

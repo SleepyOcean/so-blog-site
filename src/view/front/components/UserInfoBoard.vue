@@ -1,7 +1,7 @@
 <template>
     <div class="user-info-board full-width">
 		<div class="uib-avatar-row">
-			<el-avatar :size="80" :src="avatarUrl"></el-avatar>
+			<el-avatar :size="280" :src="avatarUrl" shape="square"></el-avatar>
 		</div>
 		<div class="uib-info-row word-cannot-selected" v-for="(item, index) in info" :key="index" :class="item.class">
 			<span class="uib-ir-label" v-if="item.labelShowing">{{item.label}}</span>
@@ -24,7 +24,7 @@ export default {
 	name: 'UserInfoBoard',
 	data () {
 		return {
-			avatarUrl: 'https://gallery.sleepyocean.cn/resource/img/39187b1e2af3f96a4b1f9be0e1c09cfd',
+			avatarUrl: '',
 			info: [
 				{
 					label: '江湖称号',
@@ -50,6 +50,9 @@ export default {
 				}
 			]
 		};
+	},
+	created () {
+		this.avatarUrl = this.$config.getAvatarImgUrl();
 	}
 };
 </script>
@@ -59,10 +62,11 @@ export default {
 	padding: 20px 10px;
 	border-right: 2px solid #f9f6f6;
 	.uib-avatar-row {
-		height: 100px;
+		height: 320px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		margin-bottom: 20px;
 	}
 	.uib-info-row {
 		&.name {

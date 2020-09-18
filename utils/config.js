@@ -8,10 +8,15 @@ let serverConfig;
 // 基础配置
 let baseConfig;
 
+// 主题配置
+let themeConfig;
+
 Config.setConfig = function (config) {
     if (typeof config === 'string') {
         config = util.jsonToObject(config) || {};
     }
+
+    // 服务配置
     let {ServerConfig} = config;
     if (typeof ServerConfig === 'string') {
         ServerConfig = util.jsonToObject(ServerConfig);
@@ -22,6 +27,7 @@ Config.setConfig = function (config) {
 		imgUrlPrefix: ServerConfig.imgUrlPrefix
     };
 
+    // 基础配置
     let {BaseConfig} = config;
     if (typeof BaseConfig === 'string') {
         BaseConfig = util.jsonToObject(BaseConfig);
@@ -30,6 +36,15 @@ Config.setConfig = function (config) {
         ajaxTimeout: BaseConfig.ajaxTimeout,
         imgUrlPlaceHolder: BaseConfig.imgUrlPlaceHolder
     };
+
+	// 主题配置
+	let {ThemeConfig} = config;
+	if (typeof ThemeConfig === 'string') {
+		ThemeConfig = util.jsonToObject(ThemeConfig);
+	}
+	themeConfig = {
+		avatarUrl: ThemeConfig.avatarUrl
+	};
 };
 /**
  * 获取基础服务地址
@@ -70,4 +85,12 @@ Config.getImgUrlPlaceHolder = function () {
 Config.getAjaxTimeout = function () {
     return baseConfig.ajaxTimeout;
 };
+
+/**
+ * 获取头像地址
+ * @returns {*}
+ */
+Config.getAvatarImgUrl = function () {
+	return themeConfig.avatarUrl;
+}
 export default Config;
