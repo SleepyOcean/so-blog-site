@@ -2,13 +2,13 @@
 	<div class="full login" :style="`background-image: url('${background}')`">
 		<div class="l-box form">
 			<div class='lb-form-box'>
-				<div class='title word-cannot-selected'>{{serviceName}}</div>
+				<div class='title word-cannot-selected'><el-image class="l-fb-logo" :src="logo"></el-image>{{serviceName}}</div>
 				<el-form class="form">
 					<el-form-item>
-						<el-input v-model='form.username' prefix-icon="el-icon-user" placeholder="用户名" clearable></el-input>
+						<el-input v-model='form.username' prefix-icon="icon-ios-person" placeholder="用户名" clearable></el-input>
 					</el-form-item>
 					<el-form-item>
-						<el-input v-model='form.password' prefix-icon="el-icon-key" type="password" placeholder="密码" clearable></el-input>
+						<el-input v-model='form.password' prefix-icon="icon-ios-key" type="password" placeholder="密码" clearable></el-input>
 					</el-form-item>
 					<el-button type="primary" @click='submitForm'>登 录</el-button>
 					<div class='link-box word-cannot-selected' v-if="false"><a>注册账号</a></div>
@@ -38,14 +38,16 @@ export default {
 		return {
 			serviceName: '欢迎回来',
 			background: '',
+			logo: '',
 			form: {
-				username: 'test_user',
-				password: '123'
+				username: '',
+				password: ''
 			}
 		};
 	},
 	created () {
-		this.background = 'https://gallery.sleepyocean.cn/resource/img/eb5a1d0b11925d940e262ca66c9b796e';
+		this.background = 'https://gallery.sleepyocean.cn/resource/img/2cd13c22baabf7e33b15b796d4ad15a8';
+		this.logo = 'https://gallery.sleepyocean.cn/resource/img/0b9e9734273ad99162a482b5074d47b4';
 	},
 	methods: {
 		submitForm () {
@@ -84,7 +86,8 @@ export default {
 				right: 180px;
 				top: calc(50% - 180px);
 				background: white;
-				border-radius: 4px;
+				border-radius: 10px;
+				border: 1px solid #c1cede;
 			}
 
 			&.info {
@@ -95,10 +98,18 @@ export default {
 			.lb-form-box {
 				width: 100%;
 
+				.l-fb-logo {
+					height: 40px;
+					width: 40px;
+					margin-right: 5px;
+				}
+
 				.title {
 					font-size: 24px;
 					height: 60px;
-					line-height: 60px;
+					display: flex;
+					align-items: flex-end;
+					justify-content: center;
 					width: 100%;
 					color: #272f42;
 					font-weight: bold;
@@ -114,10 +125,10 @@ export default {
 					.el-input__inner {
 						height: 48px;
 						line-height: 48px;
-						font-size: 18px;
+						font-size: 16px;
 						padding: 0 50px;
 						border-bottom: 2px solid #eee;
-						border-radius: 0;
+						border-radius: 5px;
 						transition: all linear .2s;
 
 						&:focus {
@@ -126,7 +137,10 @@ export default {
 					}
 
 					.el-input__prefix {
-						font-size: 20px;
+						margin-left: 10px;
+						i {
+							font-size: 24px;
+						}
 					}
 
 					.el-button--primary {

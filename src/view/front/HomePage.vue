@@ -9,6 +9,7 @@
 		</div>
 		<blank-page class="hp-article-list" v-if="articles.length < 1 && !loading" :info="blankInfo"></blank-page>
 		<div class="hp-right-panel">
+			<billboard></billboard>
 			<hot-articles-board></hot-articles-board>
 		</div>
 	</div>
@@ -16,6 +17,7 @@
 
 <script>
 import {getArticle} from '../../service/postService';
+import Billboard from './components/Billboard';
 const HotArticlesBoard = () => import('./components/HotArticlesBoard');
 const UserInfoBoard = () => import('./components/UserInfoBoard');
 const SoLoading = () => import('../../components/base/SoLoading');
@@ -26,6 +28,7 @@ const BlankPage = () => import('../../components/layout/BlankPage');
 export default {
 	name: 'HomePage',
 	components: {
+		Billboard,
 		HotArticlesBoard,
 		UserInfoBoard,
 		SoLoading,

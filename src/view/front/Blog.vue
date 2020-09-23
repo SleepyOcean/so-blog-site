@@ -208,7 +208,9 @@ export default {
 			transition: all .2s ease-in-out;
 			right: 0;
 			background-color: #30434e;
-			background-image: url("https://gallery.sleepyocean.cn/resource/img/715a3d8cffbfcf9a16d9b3d460c68bb1");
+			background-image: url("https://gallery.sleepyocean.cn/resource/img/7e20a0629c8cff47e74385a28e90f710");
+			background-position: center;
+			background-size: cover;
 			&.shrink {
 				right: -200px;
 			}

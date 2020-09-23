@@ -89,21 +89,23 @@ export default {
 
 <style lang="scss" scoped>
 .article-item {
-	margin-top: 10px;
 	width: 100%;
-	padding: 5px 20px;
+	padding: 20px 20px 10px;
 	border-bottom: 1px solid #f9f6f6;
 	box-sizing: border-box;
 	user-select: none;
 	border-radius: 4px;
 	transition: all 0.4s ease;
+	&:hover {
+		background: #fffaf088;
+	}
 	.ai-main-box {
 		width: 100%;
 		.title {
 			line-height: 28px;
 			display: flex;
 			align-items: center;
-			font-size: 16px;
+			font-size: 18px;
 			text-align: left;
 			cursor: pointer;
 			margin-bottom: 5px;
@@ -112,11 +114,10 @@ export default {
 			}
 		}
 		.article-intro {
-			font-size: 12px;
+			font-size: 14px;
 			line-height: 24px;
 			text-align: left;
 			color: #9f9bb7;
-			font-family: contentfont;
 			display: -webkit-box;
 			-webkit-box-orient: vertical;
 			-webkit-line-clamp: 2;

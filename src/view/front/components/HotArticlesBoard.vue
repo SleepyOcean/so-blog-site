@@ -45,7 +45,9 @@ export default {
 <style lang="scss">
 	.hot-articles-board {
 		padding: 20px 10px;
-		border-left: 2px solid #f9f6f6;
+		margin-bottom: 10px;
+		border-radius: 4px;
+		background-color: floralwhite;
 		.head {
 			height: 40px;
 			line-height: 36px;
