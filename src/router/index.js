@@ -105,6 +105,24 @@ export default new Router({
 			]
 		},
 		{
+			path: '/theater',
+			component: () => import('@/view/codefun/movie/MovieTheater'),
+			redirect: '/theater/home',
+			children: [{
+				path: 'home',
+				component: () => import('@/view/codefun/movie/MovieHome'),
+				meta: {
+					title: brandName + '私人影院'
+				}
+			}, {
+				path: 'detail/:id',
+				component: () => import('@/view/codefun/movie/MovieDetail'),
+				meta: {
+					title: brandName + '影视详情'
+				}
+			}]
+		},
+		{
 			path: '/css-layout',
 			component: () => import('@/view/codefun/LayoutLab'),
 			meta: {
