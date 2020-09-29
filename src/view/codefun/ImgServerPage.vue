@@ -85,14 +85,22 @@
 						:content="currentImg.uploadTime"
 					></label-content>
 					<label-content label="图片地址">
-						<a
-							slot="content"
-							class="iiub-url"
-							:href="getOriginImageUrl(currentImg.imageId)"
-							target="_blank"
-							v-if="currentImg.imageId"
-						>点击查看</a
-						>
+						<span slot="content">
+							<el-link
+								class="iiub-url"
+								type="primary"
+								:href="getOriginImageUrl(currentImg.imageId)"
+								target="_blank"
+								v-if="currentImg.imageId"
+							>点击查看</el-link>
+							<el-button
+								type="primary"
+								icon="el-icon-copy-document"
+								size="mini"
+								title="点击复制图片地址"
+								@click="copyImgUrl"
+								circle></el-button>
+						</span>
 					</label-content>
 					<div class="idb-options-box">
 						<el-popconfirm
@@ -104,7 +112,7 @@
 						>
 							<el-button slot="reference" type="danger">删除图片</el-button>
 						</el-popconfirm>
-						<el-button type="primary" @click="copyImgUrl">复制图片地址</el-button>
+						<el-button type="primary" @click="copyImgUrlForMarkdown">获取markdown引用</el-button>
 					</div>
 				</template>
 			</template>
@@ -311,6 +319,16 @@ export default {
 				})
 				.catch(e => {
 					this.$message.error('复制图片地址失败！' + e);
+				});
+		},
+		copyImgUrlForMarkdown () {
+			let markdownUrl = `![${this.currentImg.alias}](${this.getImageUrl(this.currentImg.imageId)})`;
+			navigator.clipboard.writeText(markdownUrl)
+				.then(() => {
+					this.$message.success('获取markdown引用成功');
+				})
+				.catch(e => {
+					this.$message.error('获取markdown引用失败！' + e);
 				});
 		}
 	}
