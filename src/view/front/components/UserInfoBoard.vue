@@ -1,20 +1,22 @@
 <template>
     <div class="user-info-board full-width">
 		<div class="uib-avatar-row">
-			<el-avatar :size="280" :src="avatarUrl" shape="square"></el-avatar>
+			<el-avatar :size="240" :src="avatarUrl" shape="circle"></el-avatar>
 		</div>
-		<div class="uib-info-row word-cannot-selected" v-for="(item, index) in info" :key="index" :class="item.class">
-			<span class="uib-ir-label" v-if="item.labelShowing">{{item.label}}</span>
-			<span class="uib-ir-value">
+		<div class="uib-info-box">
+			<div class="uib-info-row word-cannot-selected" v-for="(item, index) in info" :key="index" :class="item.class">
+				<span class="uib-ir-label" v-if="item.labelShowing">{{item.label}}</span>
+				<span class="uib-ir-value">
 				<i :class="item.icon" v-if="item.icon"></i>{{item.value}}
 			</span>
-		</div>
-		<div class="uib-link-row">
-			<a class="uib-link-icon github" title="github" target="_blank" href="https://github.com/SleepyOcean"></a>
-			<a class="uib-link-icon csdn" title="csdn" target="_blank" href="https://blog.csdn.net/stoneBridge1920"></a>
-			<div class="uib-link-icon wechat" title="暂未开放"></div>
-			<a class="uib-link-icon mail" title="邮箱" href="mailto:captain1920@foxmail.com"></a>
-			<a class="uib-link-icon captain" title="技术博客" href="https://sleepyocean.github.io/"></a>
+			</div>
+			<div class="uib-link-row">
+				<a class="uib-link-icon github" title="github" target="_blank" href="https://github.com/SleepyOcean"></a>
+				<a class="uib-link-icon csdn" title="csdn" target="_blank" href="https://blog.csdn.net/stoneBridge1920"></a>
+				<div class="uib-link-icon wechat" title="暂未开放"></div>
+				<a class="uib-link-icon mail" title="邮箱" href="mailto:captain1920@foxmail.com"></a>
+				<a class="uib-link-icon captain" title="技术博客" href="https://sleepyocean.github.io/"></a>
+			</div>
 		</div>
 	</div>
 </template>
@@ -59,14 +61,17 @@ export default {
 
 <style lang="scss">
 .user-info-board {
-	padding: 20px 10px;
-	border-right: 2px solid #f9f6f6;
+	width: 280px;
+	background-color: azure;
+	border-radius: 4px;
 	.uib-avatar-row {
-		height: 320px;
+		height: 280px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-bottom: 20px;
+	}
+	.uib-info-box {
+		padding: 20px 10px;
 	}
 	.uib-info-row {
 		&.name {
@@ -123,7 +128,7 @@ export default {
 				background-image: url('../../../assets/img/svg/social-mail.svg');
 			}
 			&.captain {
-				background-image: url("https://gallery.sleepyocean.cn/resource/img/51a66225986ba10a36515f11e26a0a3d");
+				background-image: url("https://gallery.sleepyocean.cn/resource/img/0b9e9734273ad99162a482b5074d47b4");
 			}
 		}
 	}

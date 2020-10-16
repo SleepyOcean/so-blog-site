@@ -42,7 +42,7 @@ export default {
 			articles: [],
 			blankInfo: '',
 			page: {
-				size: 10,
+				size: 30,
 				current: 1,
 				total: 0
 			},
@@ -66,6 +66,9 @@ export default {
 				}
 				self.articles = data.resultList.slice(0);
 				self.page.total = data.total;
+				if (self.page.total === self.articles.length) {
+					self.loadFinish = true;
+				}
 			} else {
 				self.blankInfo = '服务端请求出错了！' + data.message;
 			}
@@ -81,7 +84,7 @@ export default {
 			window.open('#/article/' + info);
 		},
 		load () {
-			if (this.loadFinish) {
+			if (this.loadFinish || this.loading) {
 				return;
 			}
 			let self = this;
@@ -133,10 +136,13 @@ export default {
 		}
 		.hp-article-list {
 			width: 800px;
+			min-width: 300px;
 			max-width: 800px;
 			background-color: white;
 		}
 		.hp-article-fragment {
+			background-color: snow;
+			margin-bottom: 10px;
 		}
 		.hp-loading {
 			margin-top: 40px;
@@ -151,10 +157,13 @@ export default {
 		}
 		.hp-right-panel, .hp-left-panel {
 			margin: 10px 20px;
-			width: 340px;
+			width: 320px;
 			height: 400px;
 			position: sticky;
 			top: 10px;
+		}
+		.hp-left-panel {
+			width: 280px;
 		}
 	}
 </style>

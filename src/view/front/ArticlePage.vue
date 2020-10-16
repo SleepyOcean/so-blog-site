@@ -1,14 +1,19 @@
 <template>
 	<div class="article-page" :class="{'full-height': !article.content}">
 		<template v-if="article.content">
-			<div class="ap-title text-ellipsis">{{article.title}}</div>
-			<div class='ap-article-info' v-if="article.content">
-				<div class='ap-ai-create-date'><i class='el-icon-date'></i>&nbsp;&nbsp;created in {{article.createTime && article.createTime.substring(0, 10)}}</div>
-				<div class='ap-ai-tag-option'>
-					<so-tag class='tag-btns' type="tag" v-for='(tag, index) in article.tags ? article.tags.split(",") : []' :key='index' :name="tag"></so-tag>
+			<div class="ap-content-board">
+				<div class="ap-title text-ellipsis">{{article.title}}</div>
+				<div class='ap-article-info' v-if="article.content">
+					<div class='ap-ai-create-date'><i class='el-icon-date'></i>&nbsp;&nbsp;created in {{article.createTime && article.createTime.substring(0, 10)}}</div>
+					<div class='ap-ai-tag-option'>
+						<so-tag class='tag-btns' type="tag" v-for='(tag, index) in article.tags ? article.tags.split(",") : []' :key='index' :name="tag"></so-tag>
+					</div>
 				</div>
+				<article-viewer class="ap-article" :content='article.content'></article-viewer>
 			</div>
-			<article-viewer class="ap-article" :content='article.content'></article-viewer>
+			<div class="ap-relation-board">
+				<hot-articles-board/>
+			</div>
 		</template>
 		<so-loading :show="loading"></so-loading>
 		<blank-page v-if="!article.content && !loading"></blank-page>
@@ -17,6 +22,7 @@
 
 <script>
 import {getArticle, getRelatedArticle} from '../../service/postService';
+import HotArticlesBoard from './components/HotArticlesBoard';
 const ArticleViewer = () => import('../../components/layout/ArticleViewer');
 const BlankPage = () => import('../../components/layout/BlankPage');
 const SoLoading = () => import('../../components/base/SoLoading');
@@ -25,6 +31,7 @@ const SoTag = () => import('../../components/base/SoTag');
 export default {
 	name: 'ArticlePage',
 	components: {
+		HotArticlesBoard,
 		SoTag,
 		SoLoading,
 		BlankPage,
@@ -90,46 +97,61 @@ export default {
 .article-page{
 	position: relative;
 	width: 100%;
-	max-width: 800px;
-	margin: auto;
 	background-color: white;
-	.ap-title {
-		height: 60px;
-		display: flex;
-		align-items: center;
-		font-size: 28px;
-		padding-left: 10px;
-	}
-	.ap-article-info {
-		display: inline-block;
+	display: flex;
+	justify-content: center;
+	.ap-content-board {
+		max-width: 800px;
 		width: 100%;
-		line-height: 20px;
-		text-align: left;
-		font-size: 14px;
-		color: #5c6b72;
-		padding: 10px;
-
-		.ap-ai-create-date {
-			padding-left: 4px;
-			font-family: numfont;
-		}
-
-		.ap-ai-tag-option {
-			width: 100%;
-			height: 40px;
+		padding-bottom: 20px;
+		.ap-title {
+			height: 60px;
 			display: flex;
 			align-items: center;
-			overflow: hidden;
-			white-space: nowrap;
-			i {
-				color: #7aa7d1;
-				margin-right: 10px;
+			font-size: 28px;
+			padding-left: 10px;
+		}
+		.ap-article-info {
+			display: inline-block;
+			width: 100%;
+			line-height: 20px;
+			text-align: left;
+			font-size: 14px;
+			color: #5c6b72;
+			padding: 10px;
+
+			.ap-ai-create-date {
+				padding-left: 4px;
+				font-family: numfont;
+			}
+
+			.ap-ai-tag-option {
+				width: 100%;
+				height: 40px;
+				display: flex;
+				align-items: center;
+				overflow: hidden;
+				white-space: nowrap;
+				i {
+					color: #7aa7d1;
+					margin-right: 10px;
+				}
 			}
 		}
+		.ap-article {
+			height: 100%;
+			width: 100%;
+		}
 	}
-	.ap-article {
-		height: 100%;
-		width: 100%;
+	.ap-relation-board {
+		width: 280px;
+		margin: 10px 20px;
+	}
+
+	@media screen and (max-width: 600px) {
+		.ap-relation-board {
+			display: none;
+		}
 	}
 }
 </style>

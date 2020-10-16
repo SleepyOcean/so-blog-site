@@ -43,7 +43,8 @@ Config.setConfig = function (config) {
 		ThemeConfig = util.jsonToObject(ThemeConfig);
 	}
 	themeConfig = {
-		avatarUrl: ThemeConfig.avatarUrl
+		avatarUrl: ThemeConfig.avatarUrl,
+		brandUrl: ThemeConfig.brandUrl
 	};
 };
 /**
@@ -92,5 +93,13 @@ Config.getAjaxTimeout = function () {
  */
 Config.getAvatarImgUrl = function () {
 	return themeConfig.avatarUrl;
+}
+
+/**
+ * 获取品牌logo地址
+ * @returns {*}
+ */
+Config.getBrandUrl = function () {
+	return themeConfig.brandUrl;
 }
 export default Config;

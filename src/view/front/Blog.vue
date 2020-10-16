@@ -1,8 +1,8 @@
 <template>
 	<div class="full blog">
 		<div class="b-header-box" :class="{'showing': showing.menu}" v-click-outside="() => showing.menu = false">
-			<el-avatar class="b-hb-avatar" slot="reference" :size="100" :src="avatarUrl" @click.native.stop="showing.menu = !showing.menu"></el-avatar>
-			<div class="b-hb-keyword">Learning is like rowing upstream</div>
+			<img class="b-hb-avatar" width="200" :src="hiddenMenuUrl">
+			<div class="b-hb-keyword">沉洋的「秘密星空」</div>
 			<div class="b-hb-info-box">
 				<div class="b-hb-info" :class='{"selected": currentType === 0}' @click="jumpTo(0)"><i class="icon-ios-book"></i><span>Home</span></div>
 				<div class="b-hb-info" :class='{"selected": currentType === 3}' @click="jumpTo(3)"><i class="icon-ios-speedometer"></i><span>SOBS</span></div>
@@ -13,7 +13,7 @@
 		<div id="content-box-id" class="b-content-box" :class="{'shrink': showing.menu,'search-status': showing.search}">
 			<div class="content-head-bar" ref="contentHeadRef">
 				<div class="b-hb-band-box">
-					<el-avatar class="b-hb-avatar" slot="reference" :size="44" :src="avatarUrl" @click.native.stop="showing.menu = !showing.menu"></el-avatar>
+					<el-avatar class="b-hb-avatar" slot="reference" :size="44" :src="brandUrl" @click.native.stop="showing.menu = !showing.menu"></el-avatar>
 					<div class="b-hb-band-title" @click="jumpTo(0)">沉洋官网</div>
 				</div>
 				<div class="b-hb-title text-ellipsis">{{currentTitle}}</div>
@@ -47,6 +47,8 @@ export default {
 	data () {
 		return {
 			avatarUrl: '',
+			brandUrl: '',
+			hiddenMenuUrl: '',
 			showing: {
 				menu: false,
 				search: false
@@ -59,7 +61,9 @@ export default {
 		}
 	},
 	created () {
+		this.hiddenMenuUrl = 'https://gallery.sleepyocean.cn/resource/img/7a912b85390e1e07414264ff53b701d3';
 		this.avatarUrl = this.$config.getAvatarImgUrl();
+		this.brandUrl = this.$config.getBrandUrl();
 	},
 	mounted () {
 		let scrollDiv = this.$refs['contentRef'];
@@ -130,7 +134,11 @@ export default {
 		.b-header-box {
 			width: 200px;
 			height: 100%;
-			background: $--so-color-main-1;
+			background-color: $--so-color-main-1;
+			background-image: url("https://gallery.sleepyocean.cn/resource/img/5087c895a0dc51b067a73920bba53d01");
+			background-size: 200px;
+			background-repeat: no-repeat;
+			background-position: bottom;
 			float: left;
 			display: flex;
 			align-items: center;
@@ -163,7 +171,7 @@ export default {
 					height: 40px;
 					width: 100%;
 					display: flex;
-					align-items: center;
+					align-items: baseline;
 					color: white;
 					font-size: 14px;
 					cursor: pointer;
@@ -173,8 +181,8 @@ export default {
 					}
 
 					&:hover {
-						span {
-							color: wheat;
+						span, i {
+							color: gold;
 						}
 					}
 					i {
@@ -207,7 +215,7 @@ export default {
 			position: absolute;
 			transition: all .2s ease-in-out;
 			right: 0;
-			background-color: #30434e;
+			background-color: white;
 			background-image: url("https://gallery.sleepyocean.cn/resource/img/7e20a0629c8cff47e74385a28e90f710");
 			background-position: center;
 			background-size: cover;
@@ -217,12 +225,13 @@ export default {
 
 			.content-head-bar {
 				height: 60px;
-				background-color: $--so-color-main-2;
+				background-color: #130a31aa∑;
+				box-shadow: 0 2px 5px rgba(0,0,0,.06);
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
 				padding: 0 20px;
-				transition: all .4s ease;
+				transition: all .2s ease-in-out;
 
 				&.header-hidden {
 					margin-top: -60px;
@@ -250,8 +259,8 @@ export default {
 				}
 				.b-hb-title {
 					width: 600px;
+					color: whitesmoke;
 					max-width: calc(100% - 100px);
-					color: white;
 					font-weight: bold;
 					letter-spacing: 6px;
 				}
@@ -283,6 +292,12 @@ export default {
 				}
 				.b-cb-view {
 					min-height: calc(100% - 60px);
+					padding-bottom: 200px;
+					margin-bottom: 20px;
+					background-image: url("https://gallery.sleepyocean.cn/resource/img/5a84a312145ea00176f2aa445262ae8e");
+					background-size: 200px;
+					background-repeat: no-repeat;
+					background-position: bottom;
 				}
 				.b-cb-footer {
 					display: flex;
