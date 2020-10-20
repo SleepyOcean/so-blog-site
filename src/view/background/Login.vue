@@ -56,8 +56,8 @@ export default {
 				password: this.form.password
 			};
 			login(params).then(data => {
-				localStorage.token = data.Authorization + ' @' + (new Date()).getTime();
 				if (data && data.Authorization) {
+					localStorage.token = data.Authorization + ' @' + (new Date()).getTime();
 					this.$message.success(`欢迎 ${params.name}`);
 					this.$router.push('/sys/dash');
 				} else {
