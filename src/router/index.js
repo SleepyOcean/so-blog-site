@@ -197,7 +197,7 @@ export default new Router({
 		{
 			path: '/*',
 			name: 'notfound',
-			component: () => import('@/view/front/components/NotFound'),
+			component: () => import('@/components/base/NotFound'),
 			meta: {
 				title: brandName + '404'
 			}

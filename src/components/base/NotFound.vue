@@ -12,6 +12,14 @@
         </div>
         <img src="../../assets/img/svg/astronaut.svg" class="astronaut" />
         <img src="../../assets/img/svg/spaceship.svg" class="spaceship" />
+		<div class="nf-footer">
+			<div class="nf-bf-footer">
+				沉睡的海洋 2020 © All Rights Reserved.
+			</div>
+			<div class="nf-bf-ICP">
+				<a>皖ICP备20002439号</a>
+			</div>
+		</div>
     </div>
 </template>
 
@@ -27,7 +35,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .not-found-box {
     background-image: url("../../assets/img/svg/star.svg"), linear-gradient(to bottom, #05007A, #4D007D);
     height: 100%;
@@ -154,5 +162,44 @@ export default {
             bottom: 18vmin;
         }
     }
+	.nf-footer {
+		width: 100%;
+		position: absolute;
+		bottom: 0;
+
+		.nf-bf-footer {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 30px;
+			width: 100%;
+			font-size: 12px;
+			letter-spacing: 1px;
+			color: #807bc5;
+			font-family: sans-serif;
+			float: left;
+			user-select: none;
+		}
+		.nf-bf-ICP {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding-bottom: 10px;
+			height: 30px;
+			width: 100%;
+			font-size: 12px;
+			letter-spacing: 1px;
+			font-family: sans-serif;
+			float: left;
+			a {
+				cursor: pointer;
+				color: #807bc5;
+				transition: color .3s ease-in-out;
+			}
+			a:hover {
+				color: #9a98bd;
+			}
+		}
+	}
 }
 </style>
