@@ -248,6 +248,7 @@ export default {
 						if (data.status === 200) {
 							this.$message.success('上传成功');
 							this.loading.list = true;
+							this.imgOfBase64 = '';
 							setTimeout(this.search, 3000);
 						} else if (data.status === 406) {
 							navigator.clipboard.writeText(this.getImageUrl(data.id))
