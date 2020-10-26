@@ -2,7 +2,9 @@
 	<div class="full login" :style="`background-image: url('${background}')`">
 		<div class="l-box form">
 			<div class='lb-form-box'>
-				<div class='title word-cannot-selected'><el-image class="l-fb-logo" :src="logo"></el-image>{{serviceName}}</div>
+				<div class='title word-cannot-selected'>
+					<el-avatar height="40" class="l-fb-logo" :src="logo"></el-avatar>{{serviceName}}
+				</div>
 				<el-form class="form">
 					<el-form-item>
 						<el-input v-model='form.username' prefix-icon="icon-ios-person" placeholder="用户名" clearable></el-input>
@@ -46,8 +48,8 @@ export default {
 		};
 	},
 	created () {
-		this.background = 'https://gallery.sleepyocean.cn/resource/img/2cd13c22baabf7e33b15b796d4ad15a8';
-		this.logo = 'https://gallery.sleepyocean.cn/resource/img/0b9e9734273ad99162a482b5074d47b4';
+		this.background = this.$config.getBackgroundUrl();
+		this.logo = this.$config.getBrandUrl();
 	},
 	methods: {
 		submitForm () {
@@ -99,8 +101,6 @@ export default {
 				width: 100%;
 
 				.l-fb-logo {
-					height: 40px;
-					width: 40px;
 					margin-right: 5px;
 				}
 

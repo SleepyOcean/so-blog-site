@@ -10,7 +10,7 @@
 				<div class="b-hb-info" :class='{"selected": currentType === 4}' @click="jumpTo(4)"><i class="icon-ios-person"></i><span>About</span></div>
 			</div>
 		</div>
-		<div id="content-box-id" class="b-content-box" :class="{'shrink': showing.menu,'search-status': showing.search}">
+		<div id="content-box-id" class="b-content-box" :class="{'shrink': showing.menu,'search-status': showing.search}" :style="`background-image: url('${backgroundUrl}');`">
 			<div class="content-head-bar" ref="contentHeadRef">
 				<div class="b-hb-band-box">
 					<el-avatar class="b-hb-avatar" slot="reference" :size="44" :src="brandUrl" @click.native.stop="showing.menu = !showing.menu"></el-avatar>
@@ -49,6 +49,7 @@ export default {
 			avatarUrl: '',
 			brandUrl: '',
 			hiddenMenuUrl: '',
+			backgroundUrl: '',
 			showing: {
 				menu: false,
 				search: false
@@ -62,6 +63,7 @@ export default {
 	},
 	created () {
 		this.hiddenMenuUrl = 'https://gallery.sleepyocean.cn/resource/img/7a912b85390e1e07414264ff53b701d3';
+		this.backgroundUrl = this.$config.getBackgroundUrl();
 		this.avatarUrl = this.$config.getAvatarImgUrl();
 		this.brandUrl = this.$config.getBrandUrl();
 	},
@@ -216,7 +218,6 @@ export default {
 			transition: all .2s ease-in-out;
 			right: 0;
 			background-color: white;
-			background-image: url("https://gallery.sleepyocean.cn/resource/img/7e20a0629c8cff47e74385a28e90f710");
 			background-position: center;
 			background-size: cover;
 			&.shrink {

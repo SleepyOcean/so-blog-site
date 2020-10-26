@@ -44,7 +44,8 @@ Config.setConfig = function (config) {
 	}
 	themeConfig = {
 		avatarUrl: ThemeConfig.avatarUrl,
-		brandUrl: ThemeConfig.brandUrl
+		brandUrl: ThemeConfig.brandUrl,
+		backgroundUrl: ThemeConfig.backgroundUrl
 	};
 };
 /**
@@ -101,5 +102,13 @@ Config.getAvatarImgUrl = function () {
  */
 Config.getBrandUrl = function () {
 	return themeConfig.brandUrl;
+}
+
+/**
+ * 获取全局背景地址
+ * @returns {*}
+ */
+Config.getBackgroundUrl = function () {
+	return themeConfig.backgroundUrl;
 }
 export default Config;
