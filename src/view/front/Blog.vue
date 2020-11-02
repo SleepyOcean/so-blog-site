@@ -98,7 +98,7 @@ export default {
 				return path.substring(8, path.indexOf('='));
 			}
 			switch (path) {
-			case 'home': return '首页';
+			case 'home': return '';
 			case 'lab': return '实验室';
 			case 'login': return '登陆';
 			case 'about': return '关于';
@@ -263,7 +263,6 @@ export default {
 					color: whitesmoke;
 					max-width: calc(100% - 100px);
 					font-weight: bold;
-					letter-spacing: 6px;
 				}
 				.chb-icon {
 					font-size: 28px;

@@ -17,6 +17,7 @@
 				<a class="uib-link-icon mail" title="邮箱" href="mailto:captain1920@foxmail.com"></a>
 				<a class="uib-link-icon captain" title="技术博客" href="https://sleepyocean.github.io/"></a>
 			</div>
+			<el-link :href="labLink" type="primary">去实验室 >></el-link>
 		</div>
 	</div>
 </template>
@@ -27,6 +28,7 @@ export default {
 	data () {
 		return {
 			avatarUrl: '',
+			labLink: '#/lab',
 			info: [
 				{
 					label: '江湖称号',
