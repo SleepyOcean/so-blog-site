@@ -10,7 +10,7 @@
 						<el-input v-model='form.username' prefix-icon="icon-ios-person" placeholder="用户名" clearable></el-input>
 					</el-form-item>
 					<el-form-item>
-						<el-input v-model='form.password' prefix-icon="icon-ios-key" type="password" placeholder="密码" clearable></el-input>
+						<el-input v-model='form.password' prefix-icon="icon-ios-key" type="password" placeholder="密码" @keyup.enter.native="submitForm" clearable></el-input>
 					</el-form-item>
 					<el-button type="primary" @click='submitForm'>登 录</el-button>
 					<div class='link-box word-cannot-selected' v-if="false"><a>注册账号</a></div>
