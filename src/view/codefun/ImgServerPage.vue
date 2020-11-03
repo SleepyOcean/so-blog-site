@@ -203,6 +203,10 @@ export default {
 					parseInt(this.$refs['contentRef'].clientWidth) - 40;
 				let remainWidth = clientWidth % 200;
 				let imageCount = clientWidth / 200;
+				if (remainWidth < 100) {
+					imageCount--;
+					remainWidth += 200;
+				}
 				this.contentMargin = remainWidth / imageCount / 2;
 			}
 		},
