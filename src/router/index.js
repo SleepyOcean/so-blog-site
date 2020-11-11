@@ -110,7 +110,7 @@ export default new Router({
 			redirect: '/theater/home',
 			children: [{
 				path: 'home',
-				component: () => import('@/view/codefun/movie/MovieHome'),
+				component: () => import('@/view/codefun/movie/MovieOnlinePage'),
 				meta: {
 					title: brandName + '私人影院'
 				}
