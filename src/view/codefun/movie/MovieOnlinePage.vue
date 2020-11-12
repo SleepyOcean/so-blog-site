@@ -25,70 +25,8 @@ export default {
 	components: {MovieItem},
 	data () {
 		return {
-			newMovies: [{
-				url: 'https://gallery.sleepyocean.cn/resource/img/430ad1f21e931ea5b35df900c282720a',
-				title: '《神奇宝贝之路基亚的爆诞》',
-				note: '今年最火爆的神奇宝贝大电影'
-			}, {
-				url: 'https://gallery.sleepyocean.cn/resource/img/3a10d71e86f349c691f4b354dd310e55',
-				title: '《神奇宝贝之乘龙历险记》',
-				note: '神奇宝贝大冒险，一起探索未知的海域吧'
-			}, {
-				url: 'https://gallery.sleepyocean.cn/resource/img/43dfe6c5d37f093913c984fa7a393a1b',
-				title: '《幽灵公主》',
-				note: '神奇宝贝大冒险，一起探索未知的海域吧'
-			}],
-			movieList: [
-				{
-					id: '23sadflkasjf23kl5h23jk5h2jk35b23523jk4b',
-					url: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3768185659,37548005&fm=173&app=25&f=JPEG?w=640&h=1136&s=2AA2CC4D1AF2C84D46383C8C0300C002',
-					name: '火星救援',
-					ratio: '1080P',
-					score: '9.8'
-				},
-				{
-					id: '23sadflkasjf23kl5h23jk5h2jk35b23523jk4b',
-					url: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3681864896,1401200815&fm=173&app=25&f=JPEG?w=640&h=947&s=3873E14CDEAD837E4CEFD611030040DD',
-					name: '海洋深处',
-					ratio: '1080P',
-					score: '9.8'
-				},
-				{
-					id: '23sadflkasjf23kl5h23jk5h2jk35b23523jk4b',
-					url: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=909306739,558210708&fm=173&app=25&f=JPEG?w=640&h=800&s=63710B64A64A2CF456EC2D0F0000E0C2',
-					name: '毒液',
-					ratio: '1080P',
-					score: '9.8'
-				},
-				{
-					id: '23sadflkasjf23kl5h23jk5h2jk35b23523jk4b',
-					url: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3204320347,2207779249&fm=173&app=25&f=JPEG?w=640&h=960&s=EA828345441117DED8B47D17030090C0',
-					name: '黑暗骑士',
-					ratio: '1080P',
-					score: '9.8'
-				},
-				{
-					id: '23sadflkasjf23kl5h23jk5h2jk35b23523jk4b',
-					url: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3686892592,4181585750&fm=173&app=25&f=JPEG?w=640&h=906&s=94D71AD68863CCDC5E8796B10300C018',
-					name: '奇异博士',
-					ratio: '1080P',
-					score: '9.8'
-				},
-				{
-					id: '23sadflkasjf23kl5h23jk5h2jk35b23523jk4b',
-					url: 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3152921789,3556901918&fm=173&app=25&f=JPEG?w=640&h=972&s=1D902CDC4A36EBDA00B8B8160300C0C6',
-					name: '银河护卫队',
-					ratio: '1080P',
-					score: '9.8'
-				},
-				{
-					id: '23sadflkasjf23kl5h23jk5h2jk35b23523jk4b',
-					url: 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1905758184,2436356264&fm=173&app=25&f=JPEG?w=640&h=1211&s=89C4934ECEED9F7C1EE5B5AD0300F007',
-					name: '攻壳机动队',
-					ratio: '1080P',
-					score: '9.8'
-				}
-			]
+			newMovies: [],
+			movieList: []
 		};
 	},
 	mounted () {
@@ -120,8 +58,8 @@ export default {
 		.mh-c-info {
 			position: absolute;
 			bottom: 0;
-			background: #0b638f;
-			filter: opacity(.5);
+			background: #3a5456;
+			filter: opacity(.9);
 			width: 100%;
 			height: 160px;
 			color: white;

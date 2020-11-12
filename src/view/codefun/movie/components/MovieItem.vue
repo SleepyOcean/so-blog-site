@@ -11,7 +11,7 @@
 			</div>
 			<div class="mi-i-ps">
 				<span class="mi-i-date" style="padding-left: 0;">{{info.publishYear}}</span>/
-				<span class="mi-i-ratio">{{infoTest.ratio}}</span>/
+				<span class="mi-i-ratio">{{info.ratio || '4K'}}</span>/
 				<span class="mi-i-plain">{{info.country.split(" / ")[0]}}</span>/
 				<span class="mi-i-tag">{{info.type.split(" / ")[0]}}</span>
 			</div>
@@ -30,13 +30,6 @@ export default {
 	},
 	data () {
 		return {
-			infoTest: {
-				date: 2020,
-				country: '美国',
-				ratio: '4K',
-				tag: '无码',
-				intro: '科技革命是对科学技术进行全面的、根本性变革。近代历史上发生过三次重大的科技革命。18世纪末，蒸汽机的发明和使用，引起了第一次科技革命；19世纪末，电力的发现和使用引起了第二次科技革命；第二次世界大战后，特别是近三十年来，先后出现了电脑、能源、新材料、空间、生物等新兴技术，引起了第三次科技革命。第三次科技革命无论在规模、深度与影响上都远远地超过前两次，它具有一些重要特点。'
-			}
 		};
 	},
 	methods: {
