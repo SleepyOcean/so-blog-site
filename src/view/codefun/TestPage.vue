@@ -25,7 +25,7 @@
 				src="http://www.internetke.com/jsEffects/2016020107/index.html"
 			></iframe>
 		</div>
-		<div class="ball-transition-box full">
+		<div class="ball-transition-box full" v-if="false">
 			<div class="ball" v-drag></div>
 		</div>
 		<div class="row-scroll-test" v-if="false">
@@ -47,14 +47,23 @@
 				style="z-index: 1"
 			></canvas>
 		</div>
+		<div class="decrypt-box">
+			<el-input v-model='encryptCode' clearable></el-input>
+			<el-button @click="decrypt">解密</el-button>
+			{{decryptUrl}}
+		</div>
 	</div>
 </template>
 
 <script>
+import Decrypt from '../../../utils/decrypt';
+
 export default {
 	name: 'TestPage',
 	data () {
 		return {
+			encryptCode: '',
+			decryptUrl: '',
 			imgSrc: 'http://localhost:9999/resource/img/12.jpg'
 		};
 	},
@@ -74,6 +83,9 @@ export default {
 		console.log(arrs);
 	},
 	methods: {
+		decrypt () {
+			this.decryptUrl = Decrypt.decrypt(this.encryptCode, 'b6ou3pN9P0FsU', 'www.pianku.tv');
+		},
 		changeParams (arrs) {
 			arrs.forEach(a => {
 				a.id = `id_${a.age}`;

@@ -1,12 +1,12 @@
 <template>
 	<div class="mt-cp-content full-height">
 		<div class="mt-slider-box">
-			<el-carousel height="460px" type="card">
-				<el-carousel-item v-for="(item,index) in newMovies" :key="index">
-					<el-image class="full" :src="item.url" fit="cover"/>
+			<el-carousel height="380px" type="card">
+				<el-carousel-item v-for="(item,index) in movieList" :key="index">
+					<el-image class="full" :src="item.postUrlVertical" fit="cover"/>
 					<div class="mh-c-info">
-						<h2>{{item.title}}</h2>
-						<span>{{item.note}}</span>
+						<h2>{{item.chineseName}}</h2>
+						<span>{{item.intro}}</span>
 					</div>
 				</el-carousel-item>
 			</el-carousel>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { getTestMovieData } from '../../../service/movieService';
 import MovieItem from './components/MovieItem';
 export default {
 	name: 'MovieOnlinePage',
@@ -90,6 +91,11 @@ export default {
 			]
 		};
 	},
+	mounted () {
+		getTestMovieData().then(data => {
+			this.movieList = data;
+		});
+	},
 	methods: {
 		movieClick (movie) {
 			this.$router.push(`detail/${movie.name}=${movie.id}`);
@@ -108,7 +114,7 @@ export default {
 	padding: 40px 20px;
 
 	.mt-slider-box {
-		height: 460px;
+		height: 400px;
 		width: calc(100% - 40px);
 		margin: 0 auto;
 		.mh-c-info {
@@ -117,10 +123,17 @@ export default {
 			background: #0b638f;
 			filter: opacity(.5);
 			width: 100%;
-			height: 140px;
+			height: 160px;
 			color: white;
 			span {
+				padding: 0 20px;
 				font-size: 14px;
+				text-align: left;
+				overflow : hidden;
+				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
 			}
 		}
 	}

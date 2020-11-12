@@ -1,19 +1,19 @@
 <template>
 	<div class="movie-item" @click="itemClick">
-		<img class="mi-image full" :src="info.url">
+		<img class="mi-image full" :src="info.postUrlVertical">
 		<div class="mi-info">
 			<div class="mi-i-intro" v-if="true">
-				<span :title="infoTest.intro">{{infoTest.intro}}</span>
+				<span :title="info.intro">{{info.intro}}</span>
 			</div>
 			<div class="mi-i-title">
-				<span class="mi-i-name">{{info.name}}</span>
-				<span class="mi-i-score">{{info.score}}</span>
+				<span class="mi-i-name text-ellipsis" :title="info.chineseName">{{info.chineseName}}</span>
+				<span class="mi-i-score">{{info.scoreDouban}}</span>
 			</div>
 			<div class="mi-i-ps">
-				<span class="mi-i-date" style="padding-left: 0;">{{infoTest.date}}</span>/
+				<span class="mi-i-date" style="padding-left: 0;">{{info.publishYear}}</span>/
 				<span class="mi-i-ratio">{{infoTest.ratio}}</span>/
-				<span class="mi-i-plain">{{infoTest.country}}</span>/
-				<span class="mi-i-tag">{{infoTest.tag}}</span>
+				<span class="mi-i-plain">{{info.country.split(" / ")[0]}}</span>/
+				<span class="mi-i-tag">{{info.type.split(" / ")[0]}}</span>
 			</div>
 		</div>
 	</div>
