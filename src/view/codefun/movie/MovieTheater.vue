@@ -33,6 +33,9 @@ export default {
 .movie-theater {
 	* {
 		user-select: none;
+		::-webkit-scrollbar {
+			width: 0;
+		}
 	}
 	.mt-side-bar {
 	}

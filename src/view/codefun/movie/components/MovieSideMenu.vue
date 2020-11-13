@@ -7,7 +7,7 @@
 			<el-image class="msm-ha-logo" :src="logoUrl"></el-image>
 		</div>
 		<div class="msm-menu-area">
-			<div class="msm-ma-menu-box full-width" v-for="(menu, index) in menus" :key="index" :title="menu.name" @click="selectedIndex = index">
+			<div class="msm-ma-menu-box full-width" v-for="(menu, index) in menus" :key="index" :title="menu.name" @click="menuClick(index)">
 				<div class="msm-ma-menu-item" :class="{selected: selectedIndex===index, folded: !expand}">
 					<el-image class="msm-ma-mi-icon" :src="menu.icon">
 						<div slot="error" :style="`background: ${menu.color}`"></div>
@@ -38,6 +38,7 @@ export default {
 				return [{
 					icon: 'https://gallery.sleepyocean.cn/resource/img/b273ca92caa36c720cba2de3e116a385',
 					color: '#122',
+					url: '/theater/home',
 					name: '在线影院'
 				}, {
 					icon: 'https://gallery.sleepyocean.cn/resource/img/7a912b85390e1e07414264ff53b701d3',
@@ -61,6 +62,10 @@ export default {
 		menuToggle () {
 			this.expand = !this.expand;
 			this.$emit('toggle', this.expand);
+		},
+		menuClick (index) {
+			this.selectedIndex = index;
+			this.$router.push(this.menus[index].url);
 		}
 	}
 };

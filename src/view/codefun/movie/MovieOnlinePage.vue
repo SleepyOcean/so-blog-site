@@ -31,12 +31,12 @@ export default {
 	},
 	mounted () {
 		getTestMovieData().then(data => {
-			this.movieList = data;
+			this.movieList = data.map((m, i) => { m.id = i; return m; });
 		});
 	},
 	methods: {
 		movieClick (movie) {
-			this.$router.push(`detail/${movie.name}=${movie.id}`);
+			this.$router.push(`detail/${movie.chineseName}=${movie.id}`);
 		}
 	}
 };
