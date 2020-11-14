@@ -9,7 +9,7 @@
 				<div class="md-b-ir-info">
 					<div class="md-bii-title-box">
 						<div style="color: gold;margin-top: 40px">{{movie.chineseName}}</div>
-						<div>{{movie.originalName}}</div>
+						<div>{{movie.originalName}}（{{movie.publishYear}}）</div>
 					</div>
 					<div class="md-bii-info-box">
 						<div class="base-info"><span>导演：</span>{{movie.director}}</div>
@@ -31,7 +31,11 @@
 			<div class="md-b-info-row">
 				<div class="md-info-title">下载链接</div>
 				<div class="md-ir-download-link" v-for="(link, index) in downloadLink" :key="index">
-					<el-link class="text-ellipsis" type="primary" :href="link.linkUrl" target="_blank">{{link.linkName}}</el-link>
+					<span class="md-irdl-ratio hd" v-if="link.linkName.includes('720p')||link.linkName.includes('720P')">720P</span>
+					<span class="md-irdl-ratio fhd" v-else-if="link.linkName.includes('1080p')||link.linkName.includes('1080P')">1080P</span>
+					<span class="md-irdl-ratio shd" v-else-if="link.linkName.includes('2160p')||link.linkName.includes('2160P')||link.linkName.includes('4k')||link.linkName.includes('4K')">4K</span>
+					<span class="md-irdl-ratio unknown-ratio" v-else>未知</span>
+					<el-link class="text-ellipsis" type="primary" :href="link.downloadUrl" target="_blank">{{link.linkName}}</el-link>
 				</div>
 			</div>
 		</div>
@@ -40,7 +44,6 @@
 
 <script>
 import { getTestMovieData } from '../../../service/movieService';
-import Decrypt from '../../../../utils/decrypt';
 export default {
 	name: 'MovieDetail',
 	data () {
@@ -57,17 +60,9 @@ export default {
 			this.movie = data[this.id];
 			let links = JSON.parse(this.movie.downloadLinks);
 			links.forEach(link => {
-				this.downloadLink.push({
-					linkName: link.linkName,
-					linkUrl: this.decrypt(link.encryptLink)
-				});
+				this.downloadLink.push(link);
 			});
 		});
-	},
-	methods: {
-		decrypt (encryptUrl) {
-			this.decryptUrl = Decrypt.decrypt(encryptUrl, 'b6ou3pN9P0FsU', 'www.pianku.tv');
-		}
 	}
 };
 </script>
@@ -137,6 +132,7 @@ export default {
 					line-height: 24px;
 					color: #2d2d2d;
 					span {
+						font-weight: bolder;
 						color: #777;
 					}
 				}
@@ -150,6 +146,26 @@ export default {
 			.md-ir-intro {
 				line-height: 28px;
 				font-size: 14px;
+			}
+			.md-ir-download-link {
+				line-height: 28px;
+				.md-irdl-ratio {
+					font-size: 16px;
+					font-style: italic;
+					font-weight: bold;
+					&.hd {
+						color: #9f8758
+					}
+					&.fhd {
+						color: #8b7e7f
+					}
+					&.shd {
+						color: #00289a
+					}
+					&.unknown-ratio {
+						color: #c1c1c1
+					}
+				}
 			}
 		}
 	}
