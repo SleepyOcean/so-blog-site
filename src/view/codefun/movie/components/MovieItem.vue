@@ -1,9 +1,9 @@
 <template>
 	<div class="movie-item" @click="itemClick">
-		<img class="mi-image full" :src="info.postUrlVertical">
+		<img class="mi-image full" :src="info.postUrl">
 		<div class="mi-info">
 			<div class="mi-i-intro" v-if="true">
-				<span :title="info.intro">{{info.intro}}</span>
+				<span :title="info.intro[0]">{{info.intro[0]}}</span>
 			</div>
 			<div class="mi-i-title">
 				<span class="mi-i-name text-ellipsis" :title="info.chineseName">{{info.chineseName}}</span>

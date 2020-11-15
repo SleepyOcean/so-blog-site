@@ -1,41 +1,42 @@
 <template>
 	<div class="movie-detail full">
 		<div class="md-blur-bg-box">
-			<img class="md-bbb-bg full" :src="movie.postUrlVertical">
+			<img class="md-bbb-bg full" :src="movie.postUrl">
 		</div>
 		<div class="md-detail-box">
 			<div class="md-b-info-row md-base-info-row">
-				<img class="md-b-ir-cover" :src="movie.postUrlVertical">
+				<img class="md-b-ir-cover" :src="movie.postUrl">
 				<div class="md-b-ir-info">
 					<div class="md-bii-title-box">
 						<div style="color: gold;margin-top: 40px">{{movie.chineseName}}</div>
 						<div>{{movie.originalName}}（{{movie.publishYear}}）</div>
 					</div>
 					<div class="md-bii-info-box">
-						<div class="base-info"><span>导演：</span>{{movie.director}}</div>
-						<div class="base-info multi-text-ellipsis-2"><span>主演：</span>{{movie.actor}}</div>
-						<div class="base-info"><span>类型：</span>{{movie.type}}</div>
-						<div class="base-info"><span>地区：</span>{{movie.country}}</div>
-						<div class="base-info"><span>上映：</span>{{movie.date}}</div>
-						<div class="base-info"><span>片长：</span>{{movie.runningTime}}</div>
-						<div class="base-info"><span>又名：</span>{{movie.alias}}</div>
-						<div class="base-info"><span>评分：</span>{{movie.score}}</div>
-						<div class="base-info"><span>备注：</span>{{movie.note}}</div>
+						<div class="base-info" v-if="movie.director"><span>导演：</span>{{movie.director}}</div>
+						<div class="base-info multi-text-ellipsis-2" v-if="movie.actor"><span>主演：</span>{{movie.actor}}</div>
+						<div class="base-info" v-if="movie.type"><span>类型：</span>{{movie.type}}</div>
+						<div class="base-info" v-if="movie.country"><span>地区：</span>{{movie.country}}</div>
+						<div class="base-info" v-if="movie.date"><span>上映：</span>{{movie.date}}</div>
+						<div class="base-info" v-if="movie.runningTime"><span>片长：</span>{{movie.runningTime}}</div>
+						<div class="base-info" v-if="movie.alias"><span>又名：</span>{{movie.alias}}</div>
+						<div class="base-info" v-if="movie.score"><span>评分：</span>{{movie.score}}</div>
+						<div class="base-info" v-if="movie.note"><span>备注：</span>{{movie.note}}</div>
 					</div>
 				</div>
 			</div>
 			<div class="md-b-info-row">
 				<div class="md-info-title">影片介绍</div>
-				<div class="md-ir-intro">{{movie.intro}}</div>
+				<div class="md-ir-intro">
+					<p v-for="(item, index) in movie.intro" :key="index" style="text-indent:2em;">{{item}}</p>
+				</div>
 			</div>
-			<div class="md-b-info-row">
+			<div class="md-b-info-row" v-if="downloadLink.length!=0">
 				<div class="md-info-title">下载链接</div>
 				<div class="md-ir-download-link" v-for="(link, index) in downloadLink" :key="index">
-					<span class="md-irdl-ratio hd" v-if="link.linkName.includes('720p')||link.linkName.includes('720P')">720P</span>
-					<span class="md-irdl-ratio fhd" v-else-if="link.linkName.includes('1080p')||link.linkName.includes('1080P')">1080P</span>
-					<span class="md-irdl-ratio shd" v-else-if="link.linkName.includes('2160p')||link.linkName.includes('2160P')||link.linkName.includes('4k')||link.linkName.includes('4K')">4K</span>
-					<span class="md-irdl-ratio unknown-ratio" v-else>未知</span>
-					<el-link class="text-ellipsis" type="primary" :href="link.downloadUrl" target="_blank">{{link.linkName}}</el-link>
+					<el-link class="text-ellipsis" type="primary" :href="link.downloadUrl" target="_blank">
+						<span class="md-irdl-ratio">{{link.ratio}}</span>
+						<span class="md-irdl-ratio">{{link.fileSize}}</span>
+						{{link.linkName}}</el-link>
 				</div>
 			</div>
 		</div>
@@ -59,6 +60,7 @@ export default {
 		getTestMovieData().then(data => {
 			this.movie = data[this.id];
 			let links = JSON.parse(this.movie.downloadLinks);
+			this.movie.intro = JSON.parse(this.movie.intro);
 			links.forEach(link => {
 				this.downloadLink.push(link);
 			});
@@ -71,7 +73,7 @@ export default {
 .movie-detail {
 	overflow-x: auto;
 	width: 100%;
-	max-width: 1200px;
+	//max-width: 1200px;
 	margin: 0 auto;
 	.md-blur-bg-box {
 		width: 100%;
@@ -148,23 +150,14 @@ export default {
 				font-size: 14px;
 			}
 			.md-ir-download-link {
-				line-height: 28px;
+				display: flex;
+				height: 40px;
+				align-items: center;
+				border-bottom: 1px solid #f5f5f5;
 				.md-irdl-ratio {
 					font-size: 16px;
 					font-style: italic;
 					font-weight: bold;
-					&.hd {
-						color: #9f8758
-					}
-					&.fhd {
-						color: #8b7e7f
-					}
-					&.shd {
-						color: #00289a
-					}
-					&.unknown-ratio {
-						color: #c1c1c1
-					}
 				}
 			}
 		}
