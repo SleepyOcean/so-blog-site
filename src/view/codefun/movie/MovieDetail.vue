@@ -1,7 +1,7 @@
 <template>
 	<div class="movie-detail full">
 		<div class="md-blur-bg-box">
-			<img class="md-bbb-bg full" :src="movie.postUrl">
+			<img class="md-bbb-bg full" :src="movie.postUrlHorizon.length>0 ? movie.postUrlHorizon[0] : movie.postUrl">
 		</div>
 		<div class="md-detail-box">
 			<div class="md-b-info-row md-base-info-row">
@@ -32,12 +32,26 @@
 					<p v-for="(item, index) in movie.intro" :key="index" style="text-indent:2em;">{{ item }}</p>
 				</div>
 			</div>
+			<div class="md-b-info-row">
+				<div class="md-info-title">影片剧照</div>
+				<div class="md-ir-capture">
+					<el-carousel class="full-width" height="500px" type="card">
+						<el-carousel-item v-for="(url,index) in movie.captureUrls.slice(0,4)" :key="index">
+							<el-image class="md-ic-image full" :src="url" fit="cover"/>
+						</el-carousel-item>
+					</el-carousel>
+				</div>
+			</div>
+			<div class="md-b-info-row">
+				<div class="md-info-title">影片预告</div>
+				<div class="md-ir-trailer">
+					<video-player class="md-it-video video-player vjs-custom-skin" ref="videoPlayer" :playsinline="true" :options="playerOptions"></video-player>
+				</div>
+			</div>
 			<div class="md-b-info-row" v-if="downloadLink.length!=0">
 				<div class="md-info-title">下载链接</div>
 				<div class="md-ir-download-link" v-for="(link, index) in downloadLink" :key="index">
 					<el-link class="text-ellipsis" type="primary" :href="link.downloadUrl" target="_blank">
-						<span class="md-irdl-ratio">{{ link.ratio }}</span>
-						<span class="md-irdl-ratio">{{ link.fileSize }}</span>
 						{{ link.linkName }}
 					</el-link>
 				</div>
@@ -55,7 +69,27 @@ export default {
 		return {
 			id: '',
 			movie: {},
-			downloadLink: []
+			downloadLink: [],
+			// 视频播放
+			playerOptions: {
+				playbackRates: [ 0.5, 1.0, 1.5, 2.0 ],
+				autoplay: false,
+				muted: false,
+				loop: false,
+				preload: 'auto',
+				language: 'zh-CN',
+				aspectRatio: '16:9',
+				fluid: true,
+				sources: [],
+				poster: '',
+				notSupportedMessage: '此视频暂无法播放，请稍后再试',
+				controlBar: {
+					timeDivider: true,
+					durationDisplay: true,
+					remainingTimeDisplay: false,
+					fullscreenToggle: true
+				}
+			}
 		};
 	},
 	mounted () {
@@ -76,6 +110,10 @@ export default {
 			}
 			if (this.movie.trailerUrls) {
 				this.movie.trailerUrls = JSON.parse(this.movie.trailerUrls);
+				this.playerOptions.sources.push({
+					type: '',
+					src: this.movie.trailerUrls[0]
+				});
 			}
 			links.forEach(link => {
 				this.downloadLink.push(link);
@@ -89,7 +127,6 @@ export default {
 .movie-detail {
 	overflow-x: auto;
 	width: 100%;
-	//max-width: 1200px;
 	margin: 0 auto;
 
 	.md-blur-bg-box {
@@ -98,6 +135,7 @@ export default {
 		overflow: hidden;
 		z-index: 1;
 		position: relative;
+		background-color: #234549;
 
 		.md-bbb-bg {
 			object-fit: cover;
@@ -158,8 +196,12 @@ export default {
 					font-size: 14px;
 					line-height: 24px;
 					color: #2d2d2d;
+					.base-info {
+						font-size: 12px;
+					}
 
 					span {
+						font-size: 14px;
 						font-weight: bolder;
 						color: #777;
 					}
@@ -183,12 +225,25 @@ export default {
 				height: 40px;
 				align-items: center;
 				border-bottom: 1px solid #f5f5f5;
+				font-size: 16px;
+				font-style: italic;
+				font-weight: bold;
 
-				.md-irdl-ratio {
-					font-size: 16px;
-					font-style: italic;
-					font-weight: bold;
+				.md-irdl-detail {
+					padding-right: 10px;
 				}
+			}
+
+			.md-ir-capture {
+				display: flex;
+				align-items: center;
+				height: 560px;
+				.md-ic-image {
+					border-radius: 4px;
+					box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+				}
+			}
+			.md-ir-trailer {
 			}
 		}
 	}

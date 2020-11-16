@@ -3,7 +3,7 @@
 		<div class="mt-slider-box">
 			<el-carousel height="500px">
 				<el-carousel-item v-for="(item,index) in movieList.slice(10, 16)" :key="index">
-					<el-image class="full" :src="item.postUrl" fit="cover"/>
+					<el-image class="full" :src="item.postUrlHorizon.length>0 ? item.postUrlHorizon[0] : item.postUrl" fit="cover"/>
 					<div class="mh-c-info">
 						<h2>{{ item.chineseName }}</h2>
 						<span>{{ item.intro[0] }}</span>
@@ -65,7 +65,6 @@ export default {
 .mt-cp-content {
 	overflow-x: auto;
 	width: 100%;
-	//max-width: 1800px;
 	margin: 0 auto;
 
 	.mt-slider-box {

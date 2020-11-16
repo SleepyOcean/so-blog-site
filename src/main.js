@@ -12,6 +12,11 @@ import './style/scss/soelement.scss';
 import './style/css/animate.css';
 import Config from '../utils/config';
 import configJson from '../static/so-blog-config';
+import VideoPlayer from 'vue-video-player';
+require('video.js/dist/video-js.css');
+require('vue-video-player/src/custom-theme.css');
+
+Vue.use(VideoPlayer);
 
 Vue.use(ElementUI);
 Vue.use(Lang);
