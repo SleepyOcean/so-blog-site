@@ -36,6 +36,18 @@ export default {
 			this.movieList = data.map((m, i) => {
 				m.id = i;
 				m.intro = JSON.parse(m.intro);
+				if (m.captureUrls) {
+					m.captureUrls = JSON.parse(m.captureUrls);
+				}
+				if (m.postUrlHorizon) {
+					m.postUrlHorizon = JSON.parse(m.postUrlHorizon);
+				}
+				if (m.postUrlVertical) {
+					m.postUrlVertical = JSON.parse(m.postUrlVertical);
+				}
+				if (m.trailerUrls) {
+					m.trailerUrls = JSON.parse(m.trailerUrls);
+				}
 				return m;
 			});
 		});
@@ -70,6 +82,7 @@ export default {
 			color: white;
 			padding: 0 20px;
 			text-align: left;
+
 			&.blur {
 				filter: blur(10px) brightness(0.4);
 				transform: scale(1.2);
