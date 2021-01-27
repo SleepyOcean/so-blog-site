@@ -11,7 +11,7 @@ let backPrefix = '后台管理 | ';
 let brandName = '沉洋 | ';
 
 export default new Router({
-	mode: 'history',
+	// mode: 'history',
 	routes: [
 		{
 			path: '/login',

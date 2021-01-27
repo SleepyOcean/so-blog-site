@@ -48,14 +48,14 @@ export default {
 					title: '云文件夹应用',
 					intro: '',
 					updateTime: '2020-08-12',
-					source: 'https://github.com/SleepyOcean/JavaLearning/tree/master/RPG_Game'
+					source: 'https://github.com/SleepyOcean/cloud-file-application'
 				},
 				{
 					imgUrl: 'https://cdn.jsdelivr.net/gh/SleepyOcean/ImageRepo@master/uPic/%E6%B2%89%E6%B4%8B%20%E7%94%B5%E5%BD%B1%E9%99%A2.png',
 					title: '沉洋电影院',
 					intro: '',
 					updateTime: '2021-01-20',
-					source: 'https://github.com/SleepyOcean/JavaLearning/tree/master/RPG_Game'
+					source: 'https://github.com/SleepyOcean/so-theater-application'
 				}
 			]
 		};
