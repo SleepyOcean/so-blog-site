@@ -11,7 +11,7 @@ let backPrefix = '后台管理 | ';
 let brandName = '沉洋 | ';
 
 export default new Router({
-	// mode: 'history',
+	mode: 'history',
 	routes: [
 		{
 			path: '/login',
@@ -100,6 +100,13 @@ export default new Router({
 					component: () => import('@/view/front/AboutPage'),
 					meta: {
 						title: '了解此项目'
+					}
+				},
+				{
+					path: '/about-me',
+					component: () => import('@/view/front/AboutMePage'),
+					meta: {
+						title: '关于作者'
 					}
 				}
 			]
