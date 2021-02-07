@@ -19,7 +19,12 @@ export default {
 	data () {
 		return {
 			logoUrl: 'https://gallery.sleepyocean.cn/resource/img/e36f2f52cdcf31eb0df212755b4cbf57',
-			news: [ {
+			news: [{
+				title: '通知：博客文章迁移',
+				info: '目前本网站处于beta阶段，博客文章均在Github平台更新，想查看最新文章，请',
+				date: '2021-02-03',
+				link: 'https://sleepyocean.github.io/'
+			}, {
 				title: '更新：沉洋实验室页面重设计',
 				info: '沉洋实验室页面已经完成重新设计，丰富的内容展示，告别之前的单调乏味啦。',
 				date: '2020-10-26',

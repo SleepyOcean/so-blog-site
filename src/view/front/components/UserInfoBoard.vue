@@ -130,7 +130,7 @@ export default {
 				background-image: url('../../../assets/img/svg/social-mail.svg');
 			}
 			&.captain {
-				background-image: url("https://gallery.sleepyocean.cn/resource/img/0b9e9734273ad99162a482b5074d47b4");
+				background-image: url('../../../assets/img/svg/myblog.svg');
 			}
 		}
 	}

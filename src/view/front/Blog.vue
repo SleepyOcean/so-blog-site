@@ -4,10 +4,10 @@
 			<img class="b-hb-avatar" width="200" :src="hiddenMenuUrl">
 			<div class="b-hb-keyword">沉洋的「秘密星空」</div>
 			<div class="b-hb-info-box">
-				<div class="b-hb-info" :class='{"selected": currentType === 0}' @click="jumpTo(0)"><i class="icon-ios-book"></i><span>Home</span></div>
-				<div class="b-hb-info" :class='{"selected": currentType === 3}' @click="jumpTo(3)"><i class="icon-ios-speedometer"></i><span>SOBS</span></div>
-				<div class="b-hb-info" :class='{"selected": currentType === 2}' @click="jumpTo(2)"><i class="icon-ios-flask"></i><span>Lab</span></div>
-				<div class="b-hb-info" :class='{"selected": currentType === 4}' @click="jumpTo(4)"><i class="icon-ios-person"></i><span>About</span></div>
+				<div class="b-hb-info" :class='{"selected": currentType === 0}' @click="jumpTo(0)"><i class="icon-ios-book"></i><span>博客主页</span></div>
+				<div class="b-hb-info" :class='{"selected": currentType === 3}' @click="jumpTo(3)"><i class="icon-ios-speedometer"></i><span>后台管理</span></div>
+				<div class="b-hb-info" :class='{"selected": currentType === 2}' @click="jumpTo(2)"><i class="icon-ios-flask"></i><span>实验室</span></div>
+				<div class="b-hb-info" :class='{"selected": currentType === 4}' @click="jumpTo(4)"><i class="icon-ios-person"></i><span>关于</span></div>
 			</div>
 		</div>
 		<div id="content-box-id" class="b-content-box" :class="{'shrink': showing.menu,'search-status': showing.search}" :style="`background-image: url('${backgroundUrl}');`">
@@ -25,7 +25,7 @@
 			<div class="content-box" ref="contentRef" @click="showing.search = false">
 				<router-view class="b-cb-view"></router-view>
 				<div class="b-cb-footer">
-					沉睡的海洋 2020 © All Rights Reserved.
+					沉睡的海洋 2021 © All Rights Reserved.
 				</div>
 				<div class="b-cb-ICP">
 					<a>皖ICP备20002439号</a>
