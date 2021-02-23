@@ -1,14 +1,14 @@
 <template>
-	<div class="time-locker" :style="backgroundColor != 'none' ? `background-color: ${backgroundColor}` : `background-image: url(${backgroundUrl})`">
+	<div class="time-locker" :style="config.backgroundColor != 'none' ? `background-color: ${config.backgroundColor}` : `background-image: url(${config.backgroundUrl})`">
 		<div class="setting" @click="showSetting"><i class="icon-ios-settings"></i></div>
 		<div class="time-box">
-			<div class="date" :style="`fontFamily: ${dateFontStyle}; font-size: ${dateFontSize}px; color: ${dateFontColor}`" v-if="visible.date">{{ date }}{{ week }}</div>
-			<div class="time" :style="`fontFamily: ${timeFontStyle}; font-size: ${timeFontSize}px; color: ${timeFontColor}`" v-if="visible.time">{{ time }}</div>
-			<div class="info" :style="`fontFamily: ${sloganFontStyle}; font-size: ${sloganFontSize}px; color: ${sloganFontColor}`" v-if="visible.info">{{ info }}</div>
+			<div class="date" :style="`fontFamily: ${config.dateFontStyle}; font-size: ${config.dateFontSize}px; color: ${config.dateFontColor}`" v-if="config.visible.date">{{ date }}{{ week }}</div>
+			<div class="time" :style="`fontFamily: ${config.timeFontStyle}; font-size: ${config.timeFontSize}px; color: ${config.timeFontColor}`" v-if="config.visible.time">{{ time }}</div>
+			<div class="info" :style="`fontFamily: ${config.sloganFontStyle}; font-size: ${config.sloganFontSize}px; color: ${config.sloganFontColor}`" v-if="config.visible.info">{{ config.info }}</div>
 		</div>
 		<el-drawer
 			title="时钟设置"
-			:visible.sync="visible.setting"
+			:visible.sync="config.visible.setting"
 			direction="rtl"
 			:with-header="false"
 			:modal="false"
@@ -18,25 +18,25 @@
 				<div class="sp-title">时钟设置</div>
 				<el-form class="sp-form">
 					<el-form-item label="日期显示">
-						<el-switch v-model="visible.date"></el-switch>
+						<el-switch v-model="config.visible.date"></el-switch>
 					</el-form-item>
 					<el-form-item label="时间显示">
-						<el-switch v-model="visible.time"></el-switch>
+						<el-switch v-model="config.visible.time"></el-switch>
 					</el-form-item>
 					<el-form-item label="标语显示">
-						<el-switch v-model="visible.info"></el-switch>
+						<el-switch v-model="config.visible.info"></el-switch>
 					</el-form-item>
 					<el-form-item label="日期颜色">
-						<el-color-picker v-model="dateFontColor" color-format="hex"></el-color-picker>
+						<el-color-picker v-model="config.dateFontColor" color-format="hex"></el-color-picker>
 					</el-form-item>
 					<el-form-item label="时间颜色">
-						<el-color-picker v-model="timeFontColor" color-format="hex"></el-color-picker>
+						<el-color-picker v-model="config.timeFontColor" color-format="hex"></el-color-picker>
 					</el-form-item>
 					<el-form-item label="标语颜色">
-						<el-color-picker v-model="sloganFontColor" color-format="hex"></el-color-picker>
+						<el-color-picker v-model="config.sloganFontColor" color-format="hex"></el-color-picker>
 					</el-form-item>
 					<el-form-item label="日期字体">
-						<el-select v-model="dateFontStyle">
+						<el-select v-model="config.dateFontStyle">
 							<el-option
 								v-for="item in fontOptions"
 								:key="item.value"
@@ -46,7 +46,7 @@
 						</el-select>
 					</el-form-item>
 					<el-form-item label="时间字体">
-						<el-select v-model="timeFontStyle">
+						<el-select v-model="config.timeFontStyle">
 							<el-option
 								v-for="item in fontOptions"
 								:key="item.value"
@@ -56,7 +56,7 @@
 						</el-select>
 					</el-form-item>
 					<el-form-item label="标语字体">
-						<el-select v-model="sloganFontStyle">
+						<el-select v-model="config.sloganFontStyle">
 							<el-option
 								v-for="item in fontOptions"
 								:key="item.value"
@@ -66,16 +66,16 @@
 						</el-select>
 					</el-form-item>
 					<el-form-item label="日期大小">
-						<el-input-number v-model="dateFontSize" :step="1" step-strictly></el-input-number>
+						<el-input-number v-model="config.dateFontSize" :step="1" step-strictly></el-input-number>
 					</el-form-item>
 					<el-form-item label="时间大小">
-						<el-input-number v-model="timeFontSize" :step="1" step-strictly></el-input-number>
+						<el-input-number v-model="config.timeFontSize" :step="1" step-strictly></el-input-number>
 					</el-form-item>
 					<el-form-item label="标语大小">
-						<el-input-number v-model="sloganFontSize" :step="1" step-strictly></el-input-number>
+						<el-input-number v-model="config.sloganFontSize" :step="1" step-strictly></el-input-number>
 					</el-form-item>
 					<el-form-item label="背景颜色">
-						<el-select v-model="backgroundColor">
+						<el-select v-model="config.backgroundColor">
 							<el-option
 								v-for="item in colorOptions"
 								:key="item.value"
@@ -85,11 +85,24 @@
 						</el-select>
 					</el-form-item>
 					<el-form-item label="标语内容">
-						<el-input v-model="info"></el-input>
+						<el-input v-model="config.info"></el-input>
 					</el-form-item>
 					<el-form-item label="背景图片">
-						<el-input v-model="backgroundUrl" :disabled="backgroundColor != 'none'"></el-input>
+						<el-input v-model="config.backgroundUrl" :disabled="config.backgroundColor != 'none'"></el-input>
 					</el-form-item>
+					<el-form-item label="配置名称">
+						<el-input v-model="configName"></el-input>
+					</el-form-item>
+					<el-button type="primary" @click="saveConfig">保存当前配置</el-button>
+					<el-table class="config-table" height="40%" :data="configList" tooltip-effect="light" @row-dblclick="loadConfig">
+						<el-table-column label="#" type="index" width="60" align="left"></el-table-column>
+						<el-table-column label="配置名" prop="name" align="left"></el-table-column>
+						<el-table-column fixed="right" label="操作" width="120">
+							<template slot-scope="scope">
+								<el-button @click.native.prevent="deleteRow(scope.$index, configList)" type="text" size="small">移除</el-button>
+							</template>
+						</el-table-column>
+					</el-table>
 				</el-form>
 			</div>
 		</el-drawer>
@@ -103,12 +116,25 @@ export default {
 	name: 'TimeLocker',
 	data () {
 		return {
-			visible: {
-				date: true,
-				time: true,
-				info: true,
-				setting: true,
-				selected: []
+			config: {
+				visible: {
+					date: true,
+					time: true,
+					info: true,
+					setting: true
+				},
+				info: '生命不息 奋斗不止',
+				backgroundUrl: 'https://images.unsplash.com/photo-1429704658776-3d38c9990511?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2430&q=80',
+				backgroundColor: 'black',
+				dateFontSize: 28,
+				timeFontSize: 100,
+				sloganFontSize: 100,
+				timeFontStyle: 'monospace',
+				dateFontStyle: 'serif',
+				sloganFontStyle: 'cursive',
+				dateFontColor: '#778899',
+				timeFontColor: '#ffffff',
+				sloganFontColor: '#00ff00'
 			},
 			fontOptions: [{
 				label: 'monospace',
@@ -139,24 +165,18 @@ export default {
 			time: '',
 			week: '',
 			logo: '',
-			info: '生命不息 奋斗不止',
 			task: {},
-			backgroundUrl: '',
-			backgroundColor: 'black',
-			dateFontSize: 28,
-			timeFontSize: 100,
-			sloganFontSize: 100,
-			timeFontStyle: 'monospace',
-			dateFontStyle: 'serif',
-			sloganFontStyle: 'cursive',
-			dateFontColor: '#778899',
-			timeFontColor: '#ffffff',
-			sloganFontColor: '#00ff00'
+			configName: '',
+			configList: []
 		};
 	},
 	mounted () {
 		let self = this;
+		if (localStorage.getItem('TimeLockerConfigList')) {
+			this.configList = JSON.parse(localStorage.getItem('TimeLockerConfigList'));
+		}
 		self.getCurrentTime();
+		this.configName = this.date + ' ' + this.time;
 		self.task = setInterval(() => {
 			self.getCurrentTime();
 		}, 1000);
@@ -173,8 +193,22 @@ export default {
 			this.week = weekday[new Date().getDay()];
 		},
 		showSetting () {
-			this.visible.setting = !this.visible.setting;
-			console.log(this.visible.setting);
+			this.config.visible.setting = !this.config.visible.setting;
+		},
+		saveConfig () {
+			let config = JSON.parse(JSON.stringify({
+				name: this.configName,
+				config: this.config
+			}));
+			this.configList.push(config);
+			localStorage.setItem('TimeLockerConfigList', JSON.stringify(this.configList));
+		},
+		loadConfig (row, col, event) {
+			this.config = JSON.parse(JSON.stringify(row.config));
+		},
+		deleteRow (index, rows) {
+			rows.splice(index, 1);
+			localStorage.setItem('TimeLockerConfigList', JSON.stringify(this.configList));
 		}
 	},
 	beforeDestroy () {
