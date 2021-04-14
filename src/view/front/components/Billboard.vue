@@ -1,5 +1,5 @@
 <template>
-	<div class="billboard">
+	<div class="billboard" :style="`background-image: url('${bottomUrl}')`">
 		<div class="b-head"><el-image class="logo-img-style-40" :src="logoUrl"></el-image>公告板</div>
 		<el-carousel class="b-content" indicator-position="outside" direction="vertical">
 			<el-carousel-item v-for="(item, index) in news" :key="index">
@@ -18,7 +18,8 @@ export default {
 	name: 'Billboard',
 	data () {
 		return {
-			logoUrl: 'https://gallery.sleepyocean.cn/resource/img/e36f2f52cdcf31eb0df212755b4cbf57',
+			logoUrl: '',
+			bottomUrl: '',
 			news: [{
 				title: '通知：博客文章迁移',
 				info: '目前本网站处于beta阶段，博客文章均在Github平台更新，想查看最新文章，请',
@@ -36,6 +37,10 @@ export default {
 				link: '#/theater'
 			}]
 		};
+	},
+	created () {
+		this.logoUrl = this.$config.getImageUrl('e36f2f52cdcf31eb0df212755b4cbf57');
+		this.bottomUrl = this.$config.getImageUrl('3ee21ff59d162c909c7adef98f2e6958');
 	}
 };
 </script>
@@ -44,7 +49,6 @@ export default {
 .billboard {
 	padding: 10px 20px;
 	margin-bottom: 10px;
-	background-image: url("https://gallery.sleepyocean.cn/resource/img/3ee21ff59d162c909c7adef98f2e6958");
 	background-size: 300px;
 	background-repeat: no-repeat;
 	background-position: bottom;

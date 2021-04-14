@@ -111,4 +111,12 @@ Config.getBrandUrl = function () {
 Config.getBackgroundUrl = function () {
 	return themeConfig.backgroundUrl;
 }
+
+/**
+ * 获取全局背景地址
+ * @returns {*}
+ */
+Config.getImageUrl = function (imageId) {
+	return Config.getImgRequestUrl() + imageId;
+}
 export default Config;

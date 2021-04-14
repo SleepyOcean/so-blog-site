@@ -1,6 +1,6 @@
 <template>
 	<div class="full blog">
-		<div class="b-header-box" :class="{'showing': showing.menu}" v-click-outside="() => showing.menu = false">
+		<div class="b-header-box" :class="{'showing': showing.menu}" :style="`background-image: url('${hiddenMenuBottomUrl}')`" v-click-outside="() => showing.menu = false">
 			<img class="b-hb-avatar" width="200" :src="hiddenMenuUrl">
 			<div class="b-hb-keyword">沉洋的「秘密星空」</div>
 			<div class="b-hb-info-box">
@@ -23,7 +23,7 @@
 				<search-bar @selectChange="showing.search = false"></search-bar>
 			</div>
 			<div class="content-box" ref="contentRef" @click="showing.search = false">
-				<router-view class="b-cb-view"></router-view>
+				<router-view class="b-cb-view" :style="`background-image: url('${bottomUrl}')`"></router-view>
 				<div class="b-cb-footer">
 					沉睡的海洋 2021 © All Rights Reserved.
 				</div>
@@ -50,6 +50,8 @@ export default {
 			brandUrl: '',
 			hiddenMenuUrl: '',
 			backgroundUrl: '',
+			hiddenMenuBottomUrl: '',
+			bottomUrl: '',
 			showing: {
 				menu: false,
 				search: false
@@ -62,7 +64,9 @@ export default {
 		}
 	},
 	created () {
-		this.hiddenMenuUrl = 'https://gallery.sleepyocean.cn/resource/img/7a912b85390e1e07414264ff53b701d3';
+		this.hiddenMenuUrl = this.$config.getImageUrl('7a912b85390e1e07414264ff53b701d3');
+		this.hiddenMenuBottomUrl = this.$config.getImageUrl('5087c895a0dc51b067a73920bba53d01');
+		this.bottomUrl = this.$config.getImageUrl('5a84a312145ea00176f2aa445262ae8e');
 		this.backgroundUrl = this.$config.getBackgroundUrl();
 		this.avatarUrl = this.$config.getAvatarImgUrl();
 		this.brandUrl = this.$config.getBrandUrl();
@@ -137,7 +141,6 @@ export default {
 			width: 200px;
 			height: 100%;
 			background-color: $--so-color-main-1;
-			background-image: url("https://gallery.sleepyocean.cn/resource/img/5087c895a0dc51b067a73920bba53d01");
 			background-size: 200px;
 			background-repeat: no-repeat;
 			background-position: bottom;
@@ -294,7 +297,6 @@ export default {
 					min-height: calc(100% - 60px);
 					padding-bottom: 200px;
 					margin-bottom: 20px;
-					background-image: url("https://gallery.sleepyocean.cn/resource/img/5a84a312145ea00176f2aa445262ae8e");
 					background-size: 200px;
 					background-repeat: no-repeat;
 					background-position: bottom;
