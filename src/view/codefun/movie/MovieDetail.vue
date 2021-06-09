@@ -51,8 +51,10 @@
 			<div class="md-b-info-row" v-if="downloadLink.length!=0">
 				<div class="md-info-title">下载链接</div>
 				<div class="md-ir-download-link" v-for="(link, index) in downloadLink" :key="index">
+					<el-tag class="md-bir-download-tag ratio" v-if="link.ratio">{{link.ratio}}</el-tag>
+					<el-tag class="md-bir-download-tag size">{{link.fileSize}}</el-tag>
 					<el-link class="text-ellipsis" type="primary" :href="link.downloadUrl" target="_blank">
-						{{ link.linkName }}
+						<span class="md-ir-download-title">{{link.linkName}}</span>
 					</el-link>
 				</div>
 			</div>
@@ -70,6 +72,7 @@ export default {
 			id: '',
 			movie: {},
 			downloadLink: [],
+			activeName: '1',
 			// 视频播放
 			playerOptions: {
 				playbackRates: [ 0.5, 1.0, 1.5, 2.0 ],
@@ -112,7 +115,8 @@ export default {
 				this.movie.trailerUrls = JSON.parse(this.movie.trailerUrls);
 				this.playerOptions.sources.push({
 					type: '',
-					src: this.movie.trailerUrls[0]
+					src: 'http://localhost:10020/resource/video/1'
+					// src: this.movie.trailerUrls[0]
 				});
 			}
 			links.forEach(link => {
@@ -221,16 +225,27 @@ export default {
 			}
 
 			.md-ir-download-link {
-				display: flex;
 				height: 40px;
+				display: flex;
 				align-items: center;
-				border-bottom: 1px solid #f5f5f5;
-				font-size: 16px;
-				font-style: italic;
-				font-weight: bold;
-
-				.md-irdl-detail {
-					padding-right: 10px;
+				border-bottom: 1px solid #F2F6FC;
+				.md-ir-download-title {
+					font-size: 14px;
+					font-weight: bold;
+				}
+				.md-bir-download-tag {
+					margin-right: 10px;
+					font-size: 14px;
+					font-weight: bold;
+					font-style: italic;
+					color: #ffffff;
+					border: unset;
+					&.ratio {
+						background: #0b638f;
+					}
+					&.size {
+						background: #beaa85;
+					}
 				}
 			}
 
