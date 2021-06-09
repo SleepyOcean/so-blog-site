@@ -108,6 +108,8 @@ export default {
 	}
 	.acp-content-box {
 		height: calc(100% - 50px - 60px);
+		max-width: 900px;
+		margin: auto;
 		.acp-article-viewer {
 			height: 100%;
 			background: white;

@@ -47,19 +47,23 @@
 				style="z-index: 1"
 			></canvas>
 		</div>
-		<div class="decrypt-box">
+		<div class="decrypt-box" v-if="false">
 			<el-input v-model='encryptCode' clearable></el-input>
 			<el-button @click="decrypt">解密</el-button>
 			{{decryptUrl}}
 		</div>
+		<drag-side-menu-test class="full">
+		</drag-side-menu-test>
 	</div>
 </template>
 
 <script>
-import Decrypt from '../../../utils/decrypt';
+import Decrypt from '../../../../utils/decrypt';
+import DragSideMenuTest from './components/DragSideMenuTest';
 
 export default {
 	name: 'TestPage',
+	components: {DragSideMenuTest},
 	data () {
 		return {
 			encryptCode: '',

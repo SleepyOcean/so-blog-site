@@ -138,7 +138,7 @@ export default new Router({
 		},
 		{
 			path: '/idea-lab',
-			component: () => import('@/view/codefun/TestPage'),
+			component: () => import('@/view/codefun/test/TestPage'),
 			meta: {
 				title: brandName + 'Idea实验室'
 			}
