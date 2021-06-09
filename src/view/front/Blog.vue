@@ -16,7 +16,7 @@
 					<el-avatar class="b-hb-avatar" slot="reference" :size="44" :src="brandUrl" @click.native.stop="showing.menu = !showing.menu"></el-avatar>
 					<div class="b-hb-band-title" @click="jumpTo(0)">沉洋官网</div>
 				</div>
-				<div class="b-hb-title text-ellipsis">{{currentTitle}}</div>
+				<div class="b-hb-title text-ellipsis" v-if="false">{{currentTitle}}</div>
 				<i class="chb-icon" :class="showing.search ? 'icon-ios-remove' : 'icon-ios-search'" @click="showing.search = !showing.search"></i>
 			</div>
 			<div class="b-search-box" v-show="showing.search">
