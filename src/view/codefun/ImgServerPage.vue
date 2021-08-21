@@ -43,7 +43,7 @@
 			<div class="icb-img-container-box">
 				<div class="icb-img-container" :class="{'selected': currentSelected === index}" :style="`margin-left: ${contentMargin}px; margin-right: ${contentMargin}px`" v-for="(img, index) in imageList" :key="index">
 					<div class="icb-img-box" @click="currentSelected = index" @dblclick="photoView = true">
-						<el-image :src="getCompressImg(img.imageId)" :title="img.alias" class="full"/>
+						<el-image :src="getCompressImg(img.id)" :title="img.alias" class="full"/>
 					</div>
 				</div>
 			</div>
@@ -56,7 +56,7 @@
 		<div class="isp-detail-box">
 			<template>
 				<div class="idb-img-box" title="点击查看大图" @click="photoView = true">
-					<el-image class="full" :src="getImageUrl(currentImg.imageId)">
+					<el-image class="full" :src="getImageUrl(currentImg.id)">
 						<div slot="error" class="full">
 							<i class="icon-ios-image image-slot"></i>
 						</div>
@@ -66,32 +66,32 @@
 					<label-content title="基本属性"></label-content>
 					<label-content
 						label="别名"
-						:content="currentImg.alias"
+						:content="currentImg.title"
 					></label-content>
 					<label-content
 						label="分辨率"
-						:content="currentImg.resolutionRatio"
+						:content="currentImg.resolution"
 					></label-content>
 					<label-content
 						label="体积"
-						:content="currentImg.imgSize"
+						:content="currentImg.size"
 					></label-content>
 					<label-content
 						label="格式"
-						:content="currentImg.imgFormat"
+						:content="currentImg.format"
 					></label-content>
 					<label-content
 						label="发布时间"
-						:content="currentImg.uploadTime"
+						:content="formatTime(currentImg.uploadTime)"
 					></label-content>
 					<label-content label="图片地址">
 						<span slot="content">
 							<el-link
 								class="iiub-url"
 								type="primary"
-								:href="getOriginImageUrl(currentImg.imageId)"
+								:href="getImageUrl(currentImg.id)"
 								target="_blank"
-								v-if="currentImg.imageId"
+								v-if="currentImg.id"
 							>点击查看</el-link>
 							<el-button
 								type="primary"
@@ -119,7 +119,7 @@
 		</div>
 		<div class="isp-photo-view" v-if="photoView" @click.stop="1">
 			<i class="icon-ios-close-circle-out" @click="photoView = false"></i>
-			<el-image class="full" :src="getImageUrl(currentImg.imageId)" fit="contain">
+			<el-image :src="getImageUrl(currentImg.id)" fit="contain">
 				<div slot="error" class="full center-box">
 					<i class="icon-ios-image image-slot"></i>
 				</div>
@@ -189,7 +189,7 @@ export default {
 	},
 	computed: {
 		currentImg: function () {
-			if (this.imageList.length && this.currentSelected !== '') {
+			if (this.imageList && this.imageList.length && this.currentSelected !== '') {
 				return this.imageList[this.currentSelected];
 			} else {
 				return {};
@@ -225,7 +225,7 @@ export default {
 			};
 			this.loading.list = true;
 			searchImg(params).then(data => {
-				this.imageList = data.list;
+				this.imageList = data.resultList;
 				setTimeout(() => {
 					this.currentSelected = 0;
 				}, 1000);
@@ -274,17 +274,14 @@ export default {
 					});
 			});
 		},
-		getOriginImageUrl (id) {
-			return Config.getImgRequestUrl() + id;
+		formatTime (time) {
+			return time ? time.substr(0, 19).replace('T', ' ') : '';
 		},
 		getImageUrl (id) {
-			return (
-				Config.getImgRequestUrl() +
-				id
-			);
+			return id ? Config.getImgRequestUrl() + id : '';
 		},
 		getCompressImg (id) {
-			let url = Config.getImgRequestUrl() + 'compress?ratio=.2&url=' + this.getImageUrl(id);
+			let url = Config.getImgRequestUrl() + 'thumbnail/' + id;
 			return url;
 		},
 		deleteImg () {
@@ -296,7 +293,7 @@ export default {
 				editCode = value;
 				let params = {
 					editCode: editCode,
-					imgIds: [this.currentImg.imageId]
+					imgIds: [this.currentImg.id]
 				};
 				deleteImg(params).then(data => {
 					if (data === 'success') {
@@ -318,7 +315,7 @@ export default {
 			});
 		},
 		copyImgUrl () {
-			navigator.clipboard.writeText(this.getImageUrl(this.currentImg.imageId))
+			navigator.clipboard.writeText(this.getImageUrl(this.currentImg.id))
 				.then(() => {
 					this.$message.success('复制图片地址成功');
 				})
@@ -327,7 +324,7 @@ export default {
 				});
 		},
 		copyImgUrlForMarkdown () {
-			let markdownUrl = `![${this.currentImg.alias}](${this.getImageUrl(this.currentImg.imageId)})`;
+			let markdownUrl = `![${this.currentImg.alias}](${this.getImageUrl(this.currentImg.id)})`;
 			navigator.clipboard.writeText(markdownUrl)
 				.then(() => {
 					this.$message.success('获取markdown引用成功');
