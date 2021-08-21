@@ -41,7 +41,7 @@
 		<div class="isp-content-box word-cannot-selected" ref="contentRef">
 			<div class="icb-option-bar"></div>
 			<div class="icb-img-container-box">
-				<div class="icb-img-container" :class="{'selected': currentSelected === index}" :style="`margin-left: ${contentMargin}px; margin-right: ${contentMargin}px`" v-for="(img, index) in imageList" :key="index">
+				<div class="icb-img-container" :class="{'selected': currentSelected === index}" :style="`width: ${imgWidth}px;`" v-for="(img, index) in imageList" :key="index">
 					<div class="icb-img-box" @click="currentSelected = index" @dblclick="photoView = true">
 						<el-image :src="getCompressImg(img.id)" :title="img.alias" class="full"/>
 					</div>
@@ -151,7 +151,7 @@ export default {
 				list: false,
 				detail: false
 			},
-			contentMargin: '',
+			imgWidth: '',
 			currentMenu: 0,
 			imgOfBase64: '',
 			imageList: [],
@@ -199,15 +199,15 @@ export default {
 	methods: {
 		resize () {
 			if (this.$refs) {
-				let clientWidth =
-					parseInt(this.$refs['contentRef'].clientWidth) - 40;
-				let remainWidth = clientWidth % 200;
-				let imageCount = clientWidth / 200;
-				if (remainWidth < 100) {
-					imageCount--;
-					remainWidth += 200;
+				let clientWidth = parseInt(this.$refs['contentRef'].clientWidth) - 20;
+
+				if (clientWidth < 200) {
+					this.imgWidth = '200';
+				} else if (clientWidth < 1800) {
+					this.imgWidth = (clientWidth - 100) / 5 - 1;
+				} else {
+					this.imgWidth = (clientWidth - 200) / 10 - 1;
 				}
-				this.contentMargin = remainWidth / imageCount / 2;
 			}
 		},
 		pageChange (current) {
@@ -253,7 +253,6 @@ export default {
 							this.$message.success('上传成功');
 							this.loading.list = true;
 							this.imgOfBase64 = '';
-							setTimeout(this.search, 3000);
 						} else if (data.status === 406) {
 							navigator.clipboard.writeText(this.getImageUrl(data.id))
 								.then(() => {
@@ -271,6 +270,7 @@ export default {
 						this.$message.error('上传图片失败!');
 					}).finally(() => {
 						this.loading.upload = false;
+						setTimeout(this.search, 1000);
 					});
 			});
 		},
@@ -426,12 +426,11 @@ export default {
 		.icb-img-container-box {
 			height: calc(100% - 60px - 0px);
 			overflow-x: auto;
-			padding: 10px 20px;
+			padding: 10px;
 			.icb-img-container {
-				width: 200px;
 				height: 200px;
 				float: left;
-				margin: 10px 0;
+				margin: 10px;
 				&.selected {
 					outline: 2px solid #4168fa;
 				}
