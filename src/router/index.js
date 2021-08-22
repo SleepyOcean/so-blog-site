@@ -4,6 +4,7 @@ import Dash from '@/view/background/blog/views/dash/DashBoard';
 import Post from '@/view/background/blog/views/post/PostPage';
 import Manager from '@/view/background/blog/views/post/PostManager';
 import User from '@/view/background/blog/views/UserPage';
+import HomeCenter from '../view/background/blog/views/home/HomeCenter';
 
 Vue.use(Router);
 
@@ -25,8 +26,15 @@ export default new Router({
 			path: '/sys',
 			name: 'Home',
 			component: () => import('@/view/background/Home'),
-			redirect: '/sys/dash',
+			redirect: '/sys/home',
 			children: [
+				{
+					path: 'home',
+					component: HomeCenter,
+					meta: {
+						title: backPrefix + '控制台'
+					}
+				},
 				{
 					path: 'dash',
 					component: Dash,

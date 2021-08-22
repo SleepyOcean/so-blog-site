@@ -1,7 +1,7 @@
 {
     "ServerConfig": {
-		"serviceUrl": "https://service.sleepyocean.cn",
-		"imgServerUrl": "http://gallery.sleepyocean.cn",
+		"serviceUrl": "https://blog.sleepyocean.cn/service",
+		"imgServerUrl": "https://blog.sleepyocean.cn/gallery",
 		"imgUrlPrefix": "/resource/img/"
     },
     "BaseConfig": {
@@ -9,8 +9,12 @@
         "imgUrlPlaceHolder": "PLACEHOLDER=IMG_SERVER_URL"
     },
 	"ThemeConfig": {
-		"avatarUrl": "http://gallery.sleepyocean.cn/resource/img/a95dea0d07aeee1aac8a4fe39143b92f",
-		"brandUrl": "http://gallery.sleepyocean.cn/resource/img/3c4126187ff24382483b35e8964c8f93",
-		"backgroundUrl": "http://gallery.sleepyocean.cn/resource/img/430ad1f21e931ea5b35df900c282720a"
+		"avatarUrl": "https://blog.sleepyocean.cn/gallery/resource/img/a95dea0d07aeee1aac8a4fe39143b92f",
+		"brandUrl": "https://blog.sleepyocean.cn/gallery/resource/img/c10620ad45386d001383c15982e725d2",
+		"backgroundUrl": "https://blog.sleepyocean.cn/gallery/resource/img/430ad1f21e931ea5b35df900c282720a"
+	},
+	"PomodoroTimer": {
+		"startSound": "https://blog.sleepyocean.cn/gallery/resource/file/get?dir=/clock1.mp3",
+		"endSound": "https://blog.sleepyocean.cn/gallery/resource/file/get?dir=BackupStorage/clock_bell.mp3"
 	}
 }

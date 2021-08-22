@@ -11,6 +11,9 @@ let baseConfig;
 // 主题配置
 let themeConfig;
 
+// 番茄钟配置
+let pomodoroTimer;
+
 Config.setConfig = function (config) {
     if (typeof config === 'string') {
         config = util.jsonToObject(config) || {};
@@ -46,6 +49,15 @@ Config.setConfig = function (config) {
 		avatarUrl: ThemeConfig.avatarUrl,
 		brandUrl: ThemeConfig.brandUrl,
 		backgroundUrl: ThemeConfig.backgroundUrl
+	};
+	// 番茄钟配置
+	let {PomodoroTimer} = config;
+	if (typeof PomodoroTimer === 'string') {
+		PomodoroTimer = util.jsonToObject(PomodoroTimer);
+	}
+	pomodoroTimer = {
+		startSound: PomodoroTimer.startSound,
+		endSound: PomodoroTimer.endSound
 	};
 };
 /**
@@ -118,5 +130,17 @@ Config.getBackgroundUrl = function () {
  */
 Config.getImageUrl = function (imageId) {
 	return Config.getImgRequestUrl() + imageId;
+}
+
+/**
+ * 获取番茄钟音效地址
+ * @returns {*}
+ */
+Config.getPomodoroSound = function (type) {
+	if (type == 'start') {
+		return pomodoroTimer.startSound;
+	} else {
+		return pomodoroTimer.endSound;
+	}
 }
 export default Config;

@@ -123,10 +123,10 @@
 		<div class="fs-input-box" v-if="window.input">
 			<div class="fs-mb-template-1">
 				<div class="fs-mb-t1-title">
-					<i class="iosfont icon-ios-cloud" style="font-size: 28px;padding-right: 10px;color: #3a658a;display: inline;"></i>
+					<i class="iosfont icon-ios-cloud" style="font-size: 28px;padding-right: 10px;color: #b9deff;display: inline;"></i>
 					配置你的私有云
-					<input class="fs-mb-t1-input" ref='inputRef' v-model.lazy="form.server" @keyup.enter="submitServerUrl" autofocus/>
 				</div>
+				<input class="fs-mb-t1-input" ref='inputRef' v-model.lazy="form.server" @keyup.enter="submitServerUrl" autofocus placeholder="请输入file server地址"/>
 				<div class="fs-mb-t1-options">
 					<div class="fs-mb-t1-option btn-positive" @click="submitServerUrl">确认</div>
 					<div class="fs-mb-t1-option btn-negative" @click="window.input = false">取消</div>
@@ -257,7 +257,7 @@ export default {
 	},
 	computed: {
 		server: function () {
-			return localStorage.getItem('fileServer') ? localStorage.getItem('fileServer') : 'http://localhost:9000';
+			return localStorage.getItem('fileServer') ? localStorage.getItem('fileServer') : '';
 		}
 	},
 	methods: {
@@ -360,8 +360,10 @@ export default {
 		},
 		getDir () {
 			getDir(this.current.path).then(data => {
-				this.current.dirs = data.dir;
-				this.current.urlSuffix = this.server + '/resource/file/get?dir=' + this.current.path + '/';
+				if (data.dir) {
+					this.current.dirs = data.dir;
+					this.current.urlSuffix = this.server + '/resource/file/get?dir=' + this.current.path + '/';
+				}
 			});
 		},
 		getImage (name) {
@@ -375,8 +377,8 @@ export default {
 					this.current.path += `${item.name}`;
 				}
 				this.getDir();
-			} else if (item.type === '.wav' || item.type === '.mp3') {
-				this.current.music = this.server + '/resource/file/get?dir=' + this.current.path + item.name;
+			} else if (item.type === '.wav' || item.type === '.mp3' || item.type === '.flac' || item.type === '.ape' || item.type === '.m4a' || item.type === '.aac') {
+				this.current.music = this.server + '/resource/file/get?dir=' + this.current.path + '/' + item.name;
 			} else if (item.category === 'image') {
 				this.window.photo = true;
 			}
@@ -732,7 +734,7 @@ export default {
 			flex-direction: column;
 
 			.fs-audio-box {
-				width: 200px;
+				width: 600px;
 				height: 32px;
 
 				audio {
@@ -946,17 +948,24 @@ export default {
 		.fs-input-box {
 			.fs-mb-template-1 {
 				width: 500px;
+				padding: 0;
 
 				.fs-mb-t1-title {
+					height: 60px;
+					background: #0b638f;
+					color: white;
 					display: flex;
 					align-items: center;
-					margin-bottom: 0;
-					margin-top: 5px;
-
-					.fs-mb-t1-input {
-						margin-left: 20px;
-						height: 60%;
-					}
+					padding: 0 20px;
+				}
+				.fs-mb-t1-input {
+					margin: 20px 20px;
+					padding: 0 20px;
+					height: 48px;
+					width: calc(100% - 40px);
+					background: aliceblue;
+					border: unset;
+					border-radius: 4px;
 				}
 			}
 		}

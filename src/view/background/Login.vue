@@ -61,7 +61,7 @@ export default {
 				if (data && data.Authorization) {
 					localStorage.token = data.Authorization + ' @' + (new Date()).getTime();
 					this.$message.success(`欢迎 ${params.name}`);
-					this.$router.push('/sys/dash');
+					this.$router.push('/sys/home');
 				} else {
 					this.$message.error('用户名或密码错误，请检查后重试');
 				}

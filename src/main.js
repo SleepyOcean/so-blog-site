@@ -35,6 +35,7 @@ router.beforeEach((to, from, next) => {
 	} else {
 		window.document.title = to.meta.title ? to.meta.title : '沉洋';
 	}
+	// todo: check token is valid
 	if (!localStorage.token && to.fullPath.indexOf('/sys/') > -1) {
 		next('/login');
 	} else {
