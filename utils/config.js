@@ -1,6 +1,10 @@
+import util from "./util";
 
 let Config = {};
 let configHolder = {};
+function getHost() {
+	return util.getHost() + '/';
+}
 
 Config.setConfig = function (config) {
 	configHolder = config;
@@ -10,7 +14,7 @@ Config.setConfig = function (config) {
  * @returns {*}
  */
 Config.getBaseRequestUrl = function () {
-    return configHolder.ServerConfig.serviceUrl;
+    return getHost() + configHolder.ServerConfig.serviceUrl;
 };
 
 /**
@@ -18,7 +22,7 @@ Config.getBaseRequestUrl = function () {
  * @returns {*}
  */
 Config.getImgServerUrl = function () {
-    return configHolder.ServerConfig.imgServerUrl;
+    return getHost() + configHolder.ServerConfig.imgServerUrl;
 };
 
 /**
