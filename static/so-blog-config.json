@@ -1,7 +1,7 @@
 {
     "ServerConfig": {
-		"serviceUrl": "http://localhost:9010",
-		"imgServerUrl": "http://localhost:9020",
+		"serviceUrl": "service",
+		"imgServerUrl": "gallery",
 		"imgUrlPrefix": "/resource/img/"
     },
     "BaseConfig": {
