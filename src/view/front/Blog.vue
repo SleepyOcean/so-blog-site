@@ -64,9 +64,9 @@ export default {
 		}
 	},
 	created () {
-		this.hiddenMenuUrl = this.$config.getImageUrl('7a912b85390e1e07414264ff53b701d3');
-		this.hiddenMenuBottomUrl = this.$config.getImageUrl('5087c895a0dc51b067a73920bba53d01');
-		this.bottomUrl = this.$config.getImageUrl('5a84a312145ea00176f2aa445262ae8e');
+		this.hiddenMenuUrl = this.$config.getImageUrlById('7a912b85390e1e07414264ff53b701d3');
+		this.hiddenMenuBottomUrl = this.$config.getImageUrlById('5087c895a0dc51b067a73920bba53d01');
+		this.bottomUrl = this.$config.getImageUrlById('5a84a312145ea00176f2aa445262ae8e');
 		this.backgroundUrl = this.$config.getBackgroundUrl();
 		this.avatarUrl = this.$config.getAvatarImgUrl();
 		this.brandUrl = this.$config.getBrandUrl();

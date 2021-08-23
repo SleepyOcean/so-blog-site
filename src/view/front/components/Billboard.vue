@@ -39,8 +39,8 @@ export default {
 		};
 	},
 	created () {
-		this.logoUrl = this.$config.getImageUrl('e36f2f52cdcf31eb0df212755b4cbf57');
-		this.bottomUrl = this.$config.getImageUrl('3ee21ff59d162c909c7adef98f2e6958');
+		this.logoUrl = this.$config.getImageUrlById('e36f2f52cdcf31eb0df212755b4cbf57');
+		this.bottomUrl = this.$config.getImageUrlById('3ee21ff59d162c909c7adef98f2e6958');
 	}
 };
 </script>

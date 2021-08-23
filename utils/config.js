@@ -1,71 +1,16 @@
-import util from './util';
 
 let Config = {};
-
-// 服务端配置
-let serverConfig;
-
-// 基础配置
-let baseConfig;
-
-// 主题配置
-let themeConfig;
-
-// 番茄钟配置
-let pomodoroTimer;
+let configHolder = {};
 
 Config.setConfig = function (config) {
-    if (typeof config === 'string') {
-        config = util.jsonToObject(config) || {};
-    }
-
-    // 服务配置
-    let {ServerConfig} = config;
-    if (typeof ServerConfig === 'string') {
-        ServerConfig = util.jsonToObject(ServerConfig);
-    }
-    serverConfig = {
-        serviceUrl: ServerConfig.serviceUrl,
-        imgServerUrl: ServerConfig.imgServerUrl,
-		imgUrlPrefix: ServerConfig.imgUrlPrefix
-    };
-
-    // 基础配置
-    let {BaseConfig} = config;
-    if (typeof BaseConfig === 'string') {
-        BaseConfig = util.jsonToObject(BaseConfig);
-    }
-    baseConfig = {
-        ajaxTimeout: BaseConfig.ajaxTimeout,
-        imgUrlPlaceHolder: BaseConfig.imgUrlPlaceHolder
-    };
-
-	// 主题配置
-	let {ThemeConfig} = config;
-	if (typeof ThemeConfig === 'string') {
-		ThemeConfig = util.jsonToObject(ThemeConfig);
-	}
-	themeConfig = {
-		avatarUrl: ThemeConfig.avatarUrl,
-		brandUrl: ThemeConfig.brandUrl,
-		backgroundUrl: ThemeConfig.backgroundUrl
-	};
-	// 番茄钟配置
-	let {PomodoroTimer} = config;
-	if (typeof PomodoroTimer === 'string') {
-		PomodoroTimer = util.jsonToObject(PomodoroTimer);
-	}
-	pomodoroTimer = {
-		startSound: PomodoroTimer.startSound,
-		endSound: PomodoroTimer.endSound
-	};
-};
+	configHolder = config;
+}
 /**
  * 获取基础服务地址
  * @returns {*}
  */
 Config.getBaseRequestUrl = function () {
-    return serverConfig.serviceUrl;
+    return configHolder.ServerConfig.serviceUrl;
 };
 
 /**
@@ -73,7 +18,7 @@ Config.getBaseRequestUrl = function () {
  * @returns {*}
  */
 Config.getImgServerUrl = function () {
-    return serverConfig.imgServerUrl;
+    return configHolder.ServerConfig.imgServerUrl;
 };
 
 /**
@@ -81,7 +26,7 @@ Config.getImgServerUrl = function () {
  * @returns {*}
  */
 Config.getImgRequestUrl = function () {
-	return serverConfig.imgServerUrl + serverConfig.imgUrlPrefix;
+	return configHolder.ServerConfig.imgServerUrl + configHolder.ServerConfig.imgUrlPrefix;
 };
 
 /**
@@ -89,7 +34,7 @@ Config.getImgRequestUrl = function () {
  * @returns {*}
  */
 Config.getImgUrlPlaceHolder = function () {
-    return baseConfig.imgUrlPlaceHolder;
+    return configHolder.BaseConfig.imgUrlPlaceHolder;
 };
 
 /**
@@ -97,7 +42,7 @@ Config.getImgUrlPlaceHolder = function () {
  * @returns {*}
  */
 Config.getAjaxTimeout = function () {
-    return baseConfig.ajaxTimeout;
+    return configHolder.BaseConfig.ajaxTimeout;
 };
 
 /**
@@ -105,7 +50,7 @@ Config.getAjaxTimeout = function () {
  * @returns {*}
  */
 Config.getAvatarImgUrl = function () {
-	return themeConfig.avatarUrl;
+	return Config.getImageUrl(configHolder.ThemeConfig.avatarUrl);
 }
 
 /**
@@ -113,7 +58,7 @@ Config.getAvatarImgUrl = function () {
  * @returns {*}
  */
 Config.getBrandUrl = function () {
-	return themeConfig.brandUrl;
+	return Config.getImageUrl(configHolder.ThemeConfig.brandUrl);
 }
 
 /**
@@ -121,26 +66,40 @@ Config.getBrandUrl = function () {
  * @returns {*}
  */
 Config.getBackgroundUrl = function () {
-	return themeConfig.backgroundUrl;
+	return Config.getImageUrl(configHolder.ThemeConfig.backgroundUrl);
 }
 
 /**
- * 获取全局背景地址
+ * 通过ImgId获取全局图片地址
  * @returns {*}
  */
-Config.getImageUrl = function (imageId) {
+Config.getImageUrlById = function (imageId) {
 	return Config.getImgRequestUrl() + imageId;
 }
 
+/**
+ * 获取图片地址
+ * @param imgStr
+ * @returns {*}
+ */
+Config.getImageUrl = function (imgStr) {
+	if (imgStr.indexOf('/') < 0) {
+		// 只有ID，属于个人图床图片源
+		return Config.getImageUrlById(imgStr);
+	} else {
+		// 配置三方地址，直接返回
+		return imgStr;
+	}
+}
 /**
  * 获取番茄钟音效地址
  * @returns {*}
  */
 Config.getPomodoroSound = function (type) {
 	if (type == 'start') {
-		return pomodoroTimer.startSound;
+		return configHolder.PomodoroTimer.startSound;
 	} else {
-		return pomodoroTimer.endSound;
+		return configHolder.PomodoroTimer.endSound;
 	}
 }
 export default Config;

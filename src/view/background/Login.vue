@@ -42,8 +42,8 @@ export default {
 			background: '',
 			logo: '',
 			form: {
-				username: '',
-				password: ''
+				username: 'test_user',
+				password: '123'
 			}
 		};
 	},

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Config from './config';
-import dateFormat from './date';
 
 // 开发环境
 axios.setConfig = function (config, supportOld) {
