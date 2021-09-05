@@ -2,8 +2,11 @@ import util from "./util";
 
 let Config = {};
 let configHolder = {};
-function getHost() {
-	return util.getHost() + '/';
+function getHost(url) {
+	if(url.indexOf('http:') > -1 || url.indexOf('https:') > -1) {
+		return url;
+	}
+	return util.getHost() + '/' + url;
 }
 
 Config.setConfig = function (config) {
@@ -14,7 +17,7 @@ Config.setConfig = function (config) {
  * @returns {*}
  */
 Config.getBaseRequestUrl = function () {
-    return getHost() + configHolder.ServerConfig.serviceUrl;
+    return getHost(configHolder.ServerConfig.serviceUrl);
 };
 
 /**
@@ -22,7 +25,7 @@ Config.getBaseRequestUrl = function () {
  * @returns {*}
  */
 Config.getImgServerUrl = function () {
-    return getHost() + configHolder.ServerConfig.imgServerUrl;
+    return getHost(configHolder.ServerConfig.imgServerUrl);
 };
 
 /**

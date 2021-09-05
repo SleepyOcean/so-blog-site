@@ -130,7 +130,6 @@
 
 <script>
 import {deleteImg, searchImg, uploadImg} from '../../service/imgService';
-import Config from '../../../utils/config';
 
 const SoLoading = () => import('../../components/base/SoLoading');
 const Pagination = () => import('../../components/layout/Pagination');
@@ -146,6 +145,7 @@ export default {
 	},
 	data () {
 		return {
+			galleryServerUrl: 'https://gallery.sleepyocean.cn/resource/img/',
 			loading: {
 				upload: false,
 				list: false,
@@ -278,10 +278,10 @@ export default {
 			return time ? time.substr(0, 19).replace('T', ' ') : '';
 		},
 		getImageUrl (id) {
-			return id ? Config.getImgRequestUrl() + id : '';
+			return id ? this.galleryServerUrl + id : '';
 		},
 		getCompressImg (id) {
-			let url = Config.getImgRequestUrl() + 'thumbnail/' + id;
+			let url = this.galleryServerUrl + 'thumbnail/' + id;
 			return url;
 		},
 		deleteImg () {
@@ -324,7 +324,7 @@ export default {
 				});
 		},
 		copyImgUrlForMarkdown () {
-			let markdownUrl = `![${this.currentImg.alias}](${this.getImageUrl(this.currentImg.id)})`;
+			let markdownUrl = `![${this.currentImg.title}](${this.getImageUrl(this.currentImg.id)})`;
 			navigator.clipboard.writeText(markdownUrl)
 				.then(() => {
 					this.$message.success('获取markdown引用成功');
