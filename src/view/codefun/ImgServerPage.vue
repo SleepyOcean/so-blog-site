@@ -130,6 +130,7 @@
 
 <script>
 import {deleteImg, searchImg, uploadImg} from '../../service/imgService';
+import Config from '../../../utils/config';
 
 const SoLoading = () => import('../../components/base/SoLoading');
 const Pagination = () => import('../../components/layout/Pagination');
@@ -145,7 +146,7 @@ export default {
 	},
 	data () {
 		return {
-			galleryServerUrl: 'https://gallery.sleepyocean.cn/resource/img/',
+			galleryServerUrl: '',
 			loading: {
 				upload: false,
 				list: false,
@@ -165,6 +166,7 @@ export default {
 		};
 	},
 	mounted () {
+		this.galleryServerUrl = Config.getImgRequestUrl();
 		this.search();
 		this.resize();
 		let self = this;
